@@ -81,3 +81,110 @@
     background-color: #0f0f0f;
     border: 1px solid #222;
 }
+/* ===== LARIKA FLASH • CLEAN GLOW ===== */
+
+/* Fundo moderno (dark, não pesado) */
+body {
+    background: linear-gradient(180deg, #0a0a0a, #120000);
+    color: #fff;
+}
+
+/* Header com logo destacado (se tiver <img>) */
+header img {
+    max-width: 160px;
+    display: block;
+    margin: 10px auto 20px;
+    filter: drop-shadow(0 6px 18px rgba(255, 0, 0, 0.25));
+}
+
+/* Cards de combo — glow BEM suave */
+.combo {
+    background: #101010;
+    border-radius: 14px;
+    padding: 18px;
+    margin-bottom: 18px;
+    border: 1px solid #240000;
+
+    /* LED reduzido */
+    box-shadow:
+        0 6px 18px rgba(255, 0, 0, 0.12),
+        inset 0 0 10px rgba(255, 0, 0, 0.04);
+
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+/* Hover elegante (sem exagero) */
+.combo:hover {
+    transform: translateY(-2px);
+    box-shadow:
+        0 10px 26px rgba(255, 0, 0, 0.22),
+        inset 0 0 12px rgba(255, 0, 0, 0.06);
+}
+
+/* Título do combo — amarelo do logo, discreto */
+.combo h3 {
+    color: #ffcc00;
+    font-size: 18px;
+    margin-bottom: 8px;
+    text-shadow: 0 0 4px rgba(255, 204, 0, 0.25);
+}
+
+/* Descrição mais clean */
+.combo p {
+    color: #d8d8d8;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* Controles */
+.controls span {
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+}
+
+/* Botões + / - neutros, modernos */
+.controls button {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #0e0e0e;
+    color: #fff;
+    border: 1px solid #2a2a2a;
+    transition: background 0.15s ease, box-shadow 0.15s ease;
+}
+
+.controls button:hover {
+    background: #1a0000;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.25);
+}
+
+/* Inputs */
+input, select {
+    background: #0b0b0b;
+    border: 1px solid #2a2a2a;
+    border-radius: 10px;
+    color: #fff;
+}
+
+/* Total — destaque premium (amarelo do logo) */
+#total {
+    color: #ffcc00;
+    font-size: 22px;
+    text-shadow: 0 0 6px rgba(255, 204, 0, 0.35);
+}
+
+/* Botão WhatsApp — forte, limpo */
+.btn-whatsapp {
+    background: linear-gradient(135deg, #25d366, #1fa855);
+    border-radius: 14px;
+    font-size: 18px;
+    font-weight: 800;
+    box-shadow: 0 10px 26px rgba(37, 211, 102, 0.45);
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.btn-whatsapp:hover {
+    transform: scale(1.03);
+    box-shadow: 0 14px 34px rgba(37, 211, 102, 0.6);
+}
