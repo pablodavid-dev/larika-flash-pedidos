@@ -1,190 +1,221 @@
- body {
-            margin: 0;
-            padding: 0;
-            background-color: #000;
-            color: #fff;
-            font-family: Arial, Helvetica, sans-serif;
-        }
+/* =====================================
+   LARIKA FLASH — PREMIUM DARK RED 2026
+   ===================================== */
 
-        .container {
-            max-width: 600px;
-            margin: auto;
-            padding: 20px;
-        }
+:root {
+    --bg-main: #0b0909;
+    --bg-surface: #141010;
+    --bg-elevated: #1a1212;
 
-        h1, h2 {
-            text-align: center;
-        }
+    --text-primary: #f4f2f2;
+    --text-secondary: #c7bcbc;
+    --text-muted: #9a8f8f;
 
-        .combo {
-            border: 1px solid #333;
-            padding: 15px;
-            margin-bottom: 15px;
-            border-radius: 6px;
-        }
+    --accent-primary: #e11d48;   /* vermelho premium */
+    --accent-soft: #2a0f18;
 
-        .controls {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+    --border-subtle: rgba(255,255,255,0.06);
 
-        .controls button {
-            width: 30px;
-            height: 30px;
-            font-size: 18px;
-            cursor: pointer;
-        }
+    --radius-xl: 20px;
+    --radius-lg: 16px;
+    --radius-md: 12px;
 
-        .resumo {
-            border-top: 1px solid #333;
-            margin-top: 20px;
-            padding-top: 20px;
-        }
-
-        input, select {
-            width: 100%;
-            padding: 10px;
-            margin-top: 10px;
-            margin-bottom: 15px;
-            border-radius: 4px;
-            border: none;
-        }
-
-        .btn-whatsapp {
-            width: 100%;
-            padding: 15px;
-            background-color: #25d366;
-            color: #000;
-            font-size: 18px;
-            font-weight: bold;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-        }
-.combo p {
-    margin-top: 8px;
-    margin-bottom: 12px;
-    font-size: 14px;
-    line-height: 1.5;
-    color: #ccc;
+    --shadow-soft: 0 10px 30px rgba(0,0,0,0.45);
+    --shadow-hover: 0 18px 45px rgba(0,0,0,0.65);
 }
 
-        .bonus {
-    display: inline-block;
-    margin-top: 6px;
-    color: #25d366;
-    font-weight: bold;
-    font-size: 13px;
+/* BASE */
+* {
+    box-sizing: border-box;
 }
-.combo {
-    background-color: #0f0f0f;
-    border: 1px solid #222;
-}
-/* ===== LARIKA FLASH • CLEAN GLOW ===== */
 
-/* Fundo moderno (dark, não pesado) */
 body {
-    background: linear-gradient(180deg, #0a0a0a, #120000);
-    color: #fff;
+    margin: 0;
+    background: radial-gradient(
+        1200px 600px at 50% -10%,
+        #1b0f10,
+        var(--bg-main)
+    );
+    color: var(--text-primary);
+    font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    letter-spacing: 0.2px;
 }
 
-/* Header com logo destacado (se tiver <img>) */
-header img {
-    max-width: 160px;
-    display: block;
-    margin: 10px auto 20px;
-    filter: drop-shadow(0 6px 18px rgba(255, 0, 0, 0.25));
+/* CONTAINER */
+.container {
+    max-width: 680px;
+    margin: auto;
+    padding: 28px 18px 56px;
 }
 
-/* Cards de combo — glow BEM suave */
+/* TITULOS */
+h1 {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+h2 {
+    text-align: center;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+/* =====================================
+   COMBO CARD
+   ===================================== */
+
 .combo {
-    background: #101010;
-    border-radius: 14px;
-    padding: 18px;
-    margin-bottom: 18px;
-    border: 1px solid #240000;
-
-    /* LED reduzido */
-    box-shadow:
-        0 6px 18px rgba(255, 0, 0, 0.12),
-        inset 0 0 10px rgba(255, 0, 0, 0.04);
-
-    transition: transform 0.18s ease, box-shadow 0.18s ease;
+    background: linear-gradient(
+        180deg,
+        var(--bg-elevated),
+        var(--bg-surface)
+    );
+    border-radius: var(--radius-xl);
+    padding: 24px;
+    margin-bottom: 22px;
+    border: 1px solid var(--border-subtle);
+    box-shadow: var(--shadow-soft);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-/* Hover elegante (sem exagero) */
 .combo:hover {
-    transform: translateY(-2px);
-    box-shadow:
-        0 10px 26px rgba(255, 0, 0, 0.22),
-        inset 0 0 12px rgba(255, 0, 0, 0.06);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
 }
 
-/* Título do combo — amarelo do logo, discreto */
+/* TITULO DO COMBO */
 .combo h3 {
-    color: #ffcc00;
-    font-size: 18px;
-    margin-bottom: 8px;
-    text-shadow: 0 0 4px rgba(255, 204, 0, 0.25);
+    margin: 0 0 10px;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-primary);
 }
 
-/* Descrição mais clean */
+/* DESCRICAO */
 .combo p {
-    color: #d8d8d8;
-    font-size: 14px;
-    line-height: 1.5;
+    margin: 0;
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: var(--text-muted);
 }
 
-/* Controles */
-.controls span {
-    font-size: 18px;
-    font-weight: 700;
-    color: #fff;
+/* =====================================
+   CONTROLES
+   ===================================== */
+
+.controls {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-top: 20px;
 }
 
-/* Botões + / - neutros, modernos */
+/* BOTÕES */
 .controls button {
-    width: 36px;
-    height: 36px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
-    background: #0e0e0e;
-    color: #fff;
-    border: 1px solid #2a2a2a;
-    transition: background 0.15s ease, box-shadow 0.15s ease;
+    background: var(--bg-main);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-primary);
+    font-size: 20px;
+    cursor: pointer;
+    transition: background 0.2s ease, box-shadow 0.2s ease;
 }
 
 .controls button:hover {
-    background: #1a0000;
-    box-shadow: 0 0 10px rgba(255, 0, 0, 0.25);
+    background: var(--accent-soft);
+    box-shadow: 0 0 0 6px rgba(225,29,72,0.12);
 }
 
-/* Inputs */
-input, select {
-    background: #0b0b0b;
-    border: 1px solid #2a2a2a;
-    border-radius: 10px;
-    color: #fff;
-}
-
-/* Total — destaque premium (amarelo do logo) */
-#total {
-    color: #ffcc00;
-    font-size: 22px;
-    text-shadow: 0 0 6px rgba(255, 204, 0, 0.35);
-}
-
-/* Botão WhatsApp — forte, limpo */
-.btn-whatsapp {
-    background: linear-gradient(135deg, #25d366, #1fa855);
-    border-radius: 14px;
+/* QUANTIDADE */
+.controls span {
     font-size: 18px;
-    font-weight: 800;
-    box-shadow: 0 10px 26px rgba(37, 211, 102, 0.45);
-    transition: transform 0.18s ease, box-shadow 0.18s ease;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+/* =====================================
+   RESUMO / FORM
+   ===================================== */
+
+.resumo {
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 1px solid var(--border-subtle);
+}
+
+/* INPUTS */
+input, select {
+    width: 100%;
+    padding: 16px 18px;
+    margin-bottom: 18px;
+    border-radius: var(--radius-lg);
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-primary);
+    font-size: 15px;
+    transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+input::placeholder {
+    color: var(--text-muted);
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 4px rgba(225,29,72,0.25);
+}
+
+/* =====================================
+   TOTAL
+   ===================================== */
+
+#total {
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+/* =====================================
+   BOTÃO WHATSAPP
+   ===================================== */
+
+.btn-whatsapp {
+    width: 100%;
+    padding: 20px;
+    border-radius: 26px;
+    border: none;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    color: #fff;
+
+    background: linear-gradient(
+        135deg,
+        #25d366,
+        #128c7e
+    );
+
+    box-shadow: 0 20px 60px rgba(37,211,102,0.45);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .btn-whatsapp:hover {
-    transform: scale(1.03);
-    box-shadow: 0 14px 34px rgba(37, 211, 102, 0.6);
+    transform: translateY(-3px);
+    box-shadow: 0 28px 80px rgba(37,211,102,0.65);
+}
+.logo {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.logo img {
+    max-width: 140px;
+    height: auto;
 }
