@@ -1,18 +1,18 @@
 /* =====================================
-   LARIKA FLASH — PREMIUM DARK RED 2026
+   LARIKA FLASH — PREMIUM DARK GOLD 2026
    ===================================== */
 
 :root {
-    --bg-main: #0b0909;
-    --bg-surface: #141010;
-    --bg-elevated: #1a1212;
+    --bg-main: #0b0a08;
+    --bg-surface: #14120f;
+    --bg-elevated: #1a1712;
 
-    --text-primary: #f4f2f2;
-    --text-secondary: #c7bcbc;
-    --text-muted: #9a8f8f;
+    --text-primary: #f5f4f2;
+    --text-secondary: #d2cec8;
+    --text-muted: #a19a90;
 
-    --accent-primary: #e11d48;   /* vermelho premium */
-    --accent-soft: #2a0f18;
+    --accent-gold: #d4af37;      /* dourado premium */
+    --accent-gold-soft: #2a2414;
 
     --border-subtle: rgba(255,255,255,0.06);
 
@@ -33,7 +33,7 @@ body {
     margin: 0;
     background: radial-gradient(
         1200px 600px at 50% -10%,
-        #1b0f10,
+        #1f1a10,
         var(--bg-main)
     );
     color: var(--text-primary);
@@ -45,15 +45,25 @@ body {
 .container {
     max-width: 680px;
     margin: auto;
-    padding: 28px 18px 56px;
+    padding: 24px 18px 56px;
+}
+
+/* LOGO */
+.logo {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 18px;
+}
+
+.logo img {
+    max-width: 90px;
+    height: auto;
+    filter: drop-shadow(0 6px 18px rgba(212,175,55,0.35));
 }
 
 /* TITULOS */
 h1 {
-    text-align: center;
-    font-size: 28px;
-    font-weight: 600;
-    margin-bottom: 10px;
+    display: none;
 }
 
 h2 {
@@ -64,7 +74,7 @@ h2 {
 }
 
 /* =====================================
-   COMBO CARD
+   COMBOS
    ===================================== */
 
 .combo {
@@ -82,7 +92,7 @@ h2 {
 }
 
 .combo:hover {
-    transform: translateY(-4px);
+    transform: translateY(-3px);
     box-shadow: var(--shadow-hover);
 }
 
@@ -91,10 +101,10 @@ h2 {
     margin: 0 0 10px;
     font-size: 20px;
     font-weight: 600;
-    color: var(--text-primary);
+    color: var(--accent-gold);
 }
 
-/* DESCRICAO */
+/* DESCRIÇÃO */
 .combo p {
     margin: 0;
     font-size: 14.5px;
@@ -120,15 +130,15 @@ h2 {
     border-radius: 50%;
     background: var(--bg-main);
     border: 1px solid var(--border-subtle);
-    color: var(--text-primary);
+    color: var(--accent-gold);
     font-size: 20px;
     cursor: pointer;
     transition: background 0.2s ease, box-shadow 0.2s ease;
 }
 
 .controls button:hover {
-    background: var(--accent-soft);
-    box-shadow: 0 0 0 6px rgba(225,29,72,0.12);
+    background: var(--accent-gold-soft);
+    box-shadow: 0 0 0 6px rgba(212,175,55,0.15);
 }
 
 /* QUANTIDADE */
@@ -167,8 +177,8 @@ input::placeholder {
 
 input:focus, select:focus {
     outline: none;
-    border-color: var(--accent-primary);
-    box-shadow: 0 0 0 4px rgba(225,29,72,0.25);
+    border-color: var(--accent-gold);
+    box-shadow: 0 0 0 4px rgba(212,175,55,0.25);
 }
 
 /* =====================================
@@ -178,7 +188,7 @@ input:focus, select:focus {
 #total {
     font-size: 28px;
     font-weight: 600;
-    color: var(--text-primary);
+    color: var(--accent-gold);
 }
 
 /* =====================================
@@ -209,17 +219,3 @@ input:focus, select:focus {
     transform: translateY(-3px);
     box-shadow: 0 28px 80px rgba(37,211,102,0.65);
 }
-.logo {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
-}
-
-.logo img {
-    max-width: 88px;
-    width: 100%;
-    height: auto;
-}
-
-
-
