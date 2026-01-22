@@ -216,6 +216,9 @@ input:focus, select:focus {
 }
 
 .logo img {
-    max-width: 140px;
+    max-width: 96px;
+    width: 100%;
     height: auto;
 }
+
+
