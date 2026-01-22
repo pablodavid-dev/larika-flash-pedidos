@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Larika Flash</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+
+<body>
+<div class="container">
+
+    <h1>LARIKA FLASH</h1>
+    <h2>Escolha o seu combo</h2>
+
+   <div class="combo">
+    <h3>Duplo Big Flash — R$ 20</h3>
+    <p>
+        • Pão brioche<br>
+        • 2 carnes (60g cada)<br>
+        • Queijo mussarela<br>
+        • Molho cheddar<br>
+        • Molho da casa<br>
+        • Alface<br>
+        • Tomate roxa<br>
+        + Refri 200ml grátis
+    </p>
+    <div class="controls">
+        <button onclick="remover(0)">-</button>
+        <span id="qtd-0">0</span>
+        <button onclick="adicionar(0)">+</button>
+    </div>
+</div>
+
+
+    <div class="combo">
+    <h3>Duplo Cheddar Bacon — R$ 25</h3>
+    <p>
+        • Pão brioche<br>
+        • 2 carnes (60g cada)<br>
+        • Bacon<br>
+        • Queijo mussarela<br>
+        • Molho cheddar<br>
+        • Molho da casa<br>
+        • Alface<br>
+        • Tomate<br>
+        • Cebola roxa<br>
+        + Refri 200ml grátis
+    </p>
+    <div class="controls">
+        <button onclick="remover(1)">-</button>
+        <span id="qtd-1">0</span>
+        <button onclick="adicionar(1)">+</button>
+    </div>
+</div>
+
+
+    <div class="combo">
+    <h3>Duplo Frango Frito — R$ 25</h3>
+    <p>
+        • Pão brioche<br>
+        • Frango frito<br>
+        • Queijo mussarela<br>
+        • Molho da casa<br>
+        • Molho cheddar<br>
+        • Barbecue<br>
+        • Alface<br>
+        • Tomate<br>
+        • Cebola roxa<br>
+        + Refri 200ml grátis
+    </p>
+    <div class="controls">
+        <button onclick="remover(2)">-</button>
+        <span id="qtd-2">0</span>
+        <button onclick="adicionar(2)">+</button>
+    </div>
+</div>
+
+
+    <div class="combo">
+    <h3>Combo Casal 😍 — R$ 40</h3>
+    <p>
+        • 2 Duplo Cheddar Bacon<br>
+        • 2 Fritas<br>
+        • 2 Refri 200ml
+    </p>
+    <div class="controls">
+        <button onclick="remover(3)">-</button>
+        <span id="qtd-3">0</span>
+        <button onclick="adicionar(3)">+</button>
+    </div>
+</div>
+
+
+   <div class="combo">
+    <h3>Combo Família — R$ 70</h3>
+    <p>
+        • 2 Duplo Cheddar Bacon<br>
+        • 1 Duplo Big Flash<br>
+        • 3 Fritas<br>
+        • 1 Refri 1,5L
+    </p>
+    <div class="controls">
+        <button onclick="remover(4)">-</button>
+        <span id="qtd-4">0</span>
+        <button onclick="adicionar(4)">+</button>
+    </div>
+</div>
+
+
+    <div class="resumo">
+        <h2>Endereço</h2>
+
+        <input type="text" id="rua" placeholder="Nome da rua">
+
+        <select id="bairro" onchange="calcularTotal()">
+            <option value="">Selecione o bairro</option>
+            <option value="4">Rio Vermelho — R$ 4</option>
+            <option value="6">Ingleses — R$ 6</option>
+        </select>
+
+        <h2>Total: R$ <span id="total">0</span></h2>
+
+        <button class="btn-whatsapp" onclick="enviarPedido()">Realizar Pedido</button>
+    </div>
+
+</div>
+
+
+<!-- JAVASCRIPT -->
+<script src="script.js"></script>
+</body>
+</html>
