@@ -87,3 +87,31 @@ function enviarPedido() {
 
     window.open(url, "_blank");
 }
+function animarCombo(index) {
+    const combos = document.querySelectorAll('.combo');
+    combos[index].classList.add('pulse');
+    setTimeout(() => {
+        combos[index].classList.remove('pulse');
+    }, 250);
+}
+function atualizarStatusLoja() {
+    const status = document.getElementById("status-loja");
+    if (!status) return;
+
+    const agora = new Date();
+    const hora = agora.getHours();
+
+    // Aberto das 19h até 23h59
+    if (hora >= 19 && hora < 24) {
+        status.classList.remove("fechado");
+        status.classList.add("aberto");
+        status.innerText = "🟢 Aberto agora • até 00h";
+    } else {
+        status.classList.remove("aberto");
+        status.classList.add("fechado");
+        status.innerText = "🔴 Fechado agora • abre às 19h";
+    }
+}
+
+// roda ao carregar o site
+atualizarStatusLoja();
