@@ -247,3 +247,40 @@ input:focus, select:focus {
 .combo.destaque {
     border: 2px solid #8f000a;
 }
+.combo {
+    position: relative;
+}
+
+/* IMAGEM DO COMBO */
+.combo img {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 140px;
+    max-width: 35%;
+    border-radius: 12px;
+    object-fit: cover;
+}
+
+/* TEXTO NÃO INVADIR A IMAGEM */
+.combo h3,
+.combo p,
+.combo .controls {
+    padding-right: 160px;
+}
+@media (max-width: 600px) {
+    .combo img {
+        position: static;
+        transform: none;
+        width: 100%;
+        max-width: 100%;
+        margin-top: 14px;
+    }
+
+    .combo h3,
+    .combo p,
+    .combo .controls {
+        padding-right: 0;
+    }
+}
