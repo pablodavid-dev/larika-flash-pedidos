@@ -214,3 +214,22 @@ input:focus, select:focus {
     width: 20px;
     height: 20px;
 }
+.status {
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 8px 14px;
+    border-radius: 20px;
+    margin-bottom: 16px;
+    display: inline-block;
+}
+
+.status.aberto {
+    background: #e6f7ed;
+    color: #1a7f37;
+}
+
+.status.fechado {
+    background: #fdeaea;
+    color: #b42318;
+}
