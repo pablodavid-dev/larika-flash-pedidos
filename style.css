@@ -233,3 +233,17 @@ input:focus, select:focus {
     background: #fdeaea;
     color: #b42318;
 }
+.badge-mais-vendido {
+    display: inline-block;
+    background: #030303;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 999px;
+    margin-bottom: 10px;
+}
+
+.combo.destaque {
+    border: 2px solid #ea1d2c;
+}
