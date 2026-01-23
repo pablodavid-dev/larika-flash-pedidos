@@ -4,7 +4,7 @@
    ===================================== */
 
 :root {
-    --bg-main: #f7f7f7;
+    --bg-main: #dfdfdf;
     --bg-surface: #ffffff;
 
     --text-primary: #1c1c1c;
@@ -178,7 +178,7 @@ input:focus, select:focus {
 #total {
     font-size: 24px;
     font-weight: 700;
-    color: var(--accent-red);
+    color: var(--text-primary);
 }
 
 /* =====================================
@@ -235,7 +235,7 @@ input:focus, select:focus {
 }
 .badge-mais-vendido {
     display: inline-block;
-    background: #030303;
+    background: #181414;
     color: #fff;
     font-size: 12px;
     font-weight: 600;
@@ -245,5 +245,5 @@ input:focus, select:focus {
 }
 
 .combo.destaque {
-    border: 2px solid #ea1d2c;
+    border: 2px solid #8f000a;
 }
