@@ -4,7 +4,7 @@
    ===================================== */
 
 :root {
-    --bg-main: #dfdfdf;
+    --bg-main: #d3d3d3;
     --bg-surface: #ffffff;
 
     --text-primary: #1c1c1c;
@@ -284,3 +284,4 @@ input:focus, select:focus {
         padding-right: 0;
     }
 }
+
