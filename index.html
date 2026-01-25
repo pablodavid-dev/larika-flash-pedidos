@@ -10,24 +10,24 @@
 <body>
 <div class="container">
 
+    <!-- LOGO -->
     <div class="logo">
         <img src="logo.png" alt="Larika Flash">
     </div>
-    
+
+    <!-- STATUS -->
     <div id="status-loja" class="status fechado">
-    🔴 Fechado • abre às 19h
-</div>
+        🔴 Fechado • abre às 19h
+    </div>
 
+    <h2>Escolha o seu combo</h2>
 
-    <h2>Escolha o seu combo</h2> 
+    <!-- COMBOS -->
 
-
-        <!-- COMBO 1 -->
     <div class="combo destaque">
-        <h3>Combo Casal — R$ 40</h3>
-        <img src="casal.png" alt="Combo Casal" class="combo-img">
         <span class="badge-mais-vendido">Mais vendido</span>
-
+        <img src="casal.png" class="combo-img" alt="Combo Casal">
+        <h3>Combo Casal — R$ 45</h3>
         <p>
             • 2 Duplo Cheddar Bacon<br>
             • 2 Fritas<br>
@@ -40,12 +40,10 @@
         </div>
     </div>
 
-    <!-- COMBO 2 -->
     <div class="combo">
-        <h3>Combo Família — R$ 70</h3>
-        <img src="familia.png" alt="Combo Família" class="combo-img">
+        <img src="familia.png" class="combo-img" alt="Combo Família">
+        <h3>Combo Família — R$ 75</h3>
         <p>
-            
             • 3 Duplo Cheddar Bacon<br>
             • 3 Fritas<br>
             • 1 Refri 1,5L
@@ -57,22 +55,19 @@
         </div>
     </div>
 
-    <!-- COMBO 3 -->
     <div class="combo">
-        <h3>Duplo Cheddar Bacon + Refri 200ml — R$ 25</h3>
-        <img src="duplo.png" alt="Duplo Cheddar Bacon" class="combo-img">
-
+        <img src="duplo.png" class="combo-img" alt="Duplo Cheddar Bacon">
+        <h3>Duplo Cheddar Bacon + Fritas + Refri 200ml — R$ 30</h3>
         <p>
             • Pão brioche<br>
             • 2 carnes (60g cada)<br>
             • Bacon<br>
-            • Queijo Cheddar<br>
-            • Molho cheddar Premium<br>
+            • Queijo mussarela<br>
+            • Molho cheddar<br>
             • Molho da casa<br>
             • Alface<br>
             • Tomate<br>
-            • Cebola roxa<br>
-          
+            • Cebola roxa
         </p>
         <div class="controls">
             <button onclick="remover(1)">-</button>
@@ -81,10 +76,9 @@
         </div>
     </div>
 
-    <!-- COMBO 4 -->
     <div class="combo">
-        <h3>Duplo Tiken Frito + Refri 200ml — R$ 25</h3>
-        <img src="frango.png" alt="Duplo Frango Frito" class="combo-img">
+        <img src="frango.png" class="combo-img" alt="Duplo Frango Frito">
+        <h3>Flash Tiken Frito + Fritas + Refri 200ml — R$ 30</h3>
         <p>
             • Pão brioche<br>
             • Frango frito<br>
@@ -94,8 +88,7 @@
             • Barbecue<br>
             • Alface<br>
             • Tomate<br>
-            • Cebola roxa<br>
-            
+            • Cebola roxa
         </p>
         <div class="controls">
             <button onclick="remover(2)">-</button>
@@ -104,20 +97,18 @@
         </div>
     </div>
 
-     <!-- COMBO 5 -->
     <div class="combo">
-        <h3>Duplo Big Flash + Refri 200ml — R$ 20</h3>
-        <img src="flash.png" alt="Duplo Big Flash" class="combo-img">
+        <img src="flash.png" class="combo-img" alt="Duplo Big Flash">
+        <h3>Duplo Big Flash + Fritas + Refri 200ml — R$ 25</h3>
         <p>
             • Pão brioche<br>
             • 2 carnes (60g cada)<br>
             • Queijo mussarela<br>
             • Molho cheddar<br>
             • Molho da casa<br>
-            • Alface<br> 
+            • Alface<br>
             • Tomate<br>
-            • Cebola roxa<br>
-            
+            • Cebola roxa
         </p>
         <div class="controls">
             <button onclick="remover(0)">-</button>
@@ -141,15 +132,13 @@
         <h2>Total: R$ <span id="total">0</span></h2>
 
         <button class="btn-whatsapp" onclick="enviarPedido()">
-    <img src="whatsapp.png" alt="WhatsApp">
-    Realizar Pedido
-</button>
-
+            <img src="whatsapp.png" alt="WhatsApp">
+            Realizar Pedido
+        </button>
+    </div>
 
 </div>
 
-<!-- JAVASCRIPT -->
 <script src="script.js"></script>
 </body>
 </html>
-
