@@ -1,6 +1,6 @@
  // MEMÓRIA DO SISTEMA
 var quantidades = [0, 0, 0, 0, 0];
-var precos = [20, 25, 25, 40, 70];
+var precos = [25, 30, 30, 45, 75];
 
 // ADICIONAR
 function adicionar(index) {
