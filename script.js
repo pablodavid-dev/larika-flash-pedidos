@@ -101,7 +101,7 @@ function atualizarStatusLoja() {
     const agora = new Date();
     const hora = agora.getHours();
 
-    // Aberto das 19h até 23h59
+    // Aberto das h até 23h59
     if (hora >= 19 && hora < 24) {
         status.classList.remove("fechado");
         status.classList.add("aberto");
@@ -109,7 +109,7 @@ function atualizarStatusLoja() {
     } else {
         status.classList.remove("aberto");
         status.classList.add("fechado");
-        status.innerText = "🔴 Fechado agora • abre às 19h";
+        status.innerText = "🔴 Fechado agora • abre amanhã";
     }
 }
 
