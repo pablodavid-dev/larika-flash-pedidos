@@ -1,60 +1,76 @@
- // MEMÓRIA DO SISTEMA
-var quantidades = [0, 0, 0, 0, 0];
-var precos = [25, 30, 30, 45, 75];
+// ================================
+// MEMÓRIA DO SISTEMA
+// ================================
 
+var quantidades = [0, 0, 0, 0, 0, 0];
+
+var precos = [
+    39, // 0 - Out Turbo BBQ
+    35, // 1 - Duplo Cheddar Bacon
+    0,  // 2 - não usado (mantido só por segurança)
+    55, // 3 - Combo Casal
+    79, // 4 - Combo Família
+    95  // 5 - Mega Combo Larika
+];
+
+var nomesCombos = [
+    "Out Turbo BBQ + Fritas + Refri 200ml",
+    "Duplo Cheddar Bacon + Fritas + Refri 200ml",
+    "",
+    "Combo Casal",
+    "Combo Família",
+    "Mega Combo Larika"
+];
+
+// ================================
 // ADICIONAR
+// ================================
+
 function adicionar(index) {
-    quantidades[index] = quantidades[index] + 1;
+    quantidades[index]++;
     document.getElementById("qtd-" + index).innerText = quantidades[index];
     calcularTotal();
 }
 
+// ================================
 // REMOVER
+// ================================
+
 function remover(index) {
     if (quantidades[index] > 0) {
-        quantidades[index] = quantidades[index] - 1;
+        quantidades[index]--;
         document.getElementById("qtd-" + index).innerText = quantidades[index];
         calcularTotal();
     }
 }
 
+// ================================
 // CALCULAR TOTAL
+// ================================
+
 function calcularTotal() {
     var total = 0;
 
     for (var i = 0; i < quantidades.length; i++) {
-        total = total + (quantidades[i] * precos[i]);
+        total += quantidades[i] * precos[i];
     }
 
     var bairroSelect = document.getElementById("bairro");
-    var taxaEntrega = 0;
+    var taxaEntrega = bairroSelect && bairroSelect.value ? Number(bairroSelect.value) : 0;
 
-    if (bairroSelect && bairroSelect.value !== "") {
-        taxaEntrega = Number(bairroSelect.value);
-    }
-
-    total = total + taxaEntrega;
-
-    document.getElementById("total").innerText = total;
+    document.getElementById("total").innerText = total + taxaEntrega;
 }
 
+// ================================
+// ENVIAR PEDIDO WHATSAPP
+// ================================
+
 function enviarPedido() {
-    let mensagem = "Oi, boa noite! 👋\n\n";
-
-    // LISTA DE COMBOS (MESMA ORDEM)
-    const nomesCombos = [
-        "Duplo Big Flash",
-        "Duplo Cheddar Bacon",
-        "Duplo Frango Frito",
-        "Combo Casal 😍",
-        "Combo Família"
-    ];
-
+    let mensagem = "Oi, boa noite! 👋\n\nPedido:\n";
     let temPedido = false;
-    mensagem += "Pedido:\n";
 
     for (let i = 0; i < quantidades.length; i++) {
-        if (quantidades[i] > 0) {
+        if (quantidades[i] > 0 && nomesCombos[i]) {
             mensagem += `${quantidades[i]}x ${nomesCombos[i]}\n`;
             temPedido = true;
         }
@@ -64,54 +80,42 @@ function enviarPedido() {
         mensagem += "Nenhum item selecionado\n";
     }
 
-    // BAIRRO E TAXA
     const bairroSelect = document.getElementById("bairro");
-    if (bairroSelect.value !== "") {
-        const bairroNome = bairroSelect.options[bairroSelect.selectedIndex].text;
-        mensagem += `\nBairro: ${bairroNome}`;
+    if (bairroSelect.value) {
+        mensagem += `\nBairro: ${bairroSelect.options[bairroSelect.selectedIndex].text}`;
     }
 
-    // TOTAL
-    const total = document.getElementById("total").innerText;
-    mensagem += `\n\nTotal: R$ ${total}`;
+    mensagem += `\nTotal: R$ ${document.getElementById("total").innerText}`;
 
-    // RUA
     const rua = document.getElementById("rua").value;
-    if (rua.trim() !== "") {
+    if (rua.trim()) {
         mensagem += `\nRua: ${rua}`;
     }
 
-    // NUMERO DO WHATSAPP
     const numero = "554888509014";
-    const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
+    window.open(
+        `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`,
+        "_blank"
+    );
+}
 
-    window.open(url, "_blank");
-}
-function animarCombo(index) {
-    const combos = document.querySelectorAll('.combo');
-    combos[index].classList.add('pulse');
-    setTimeout(() => {
-        combos[index].classList.remove('pulse');
-    }, 250);
-}
+// ================================
+// STATUS DA LOJA
+// ================================
+
 function atualizarStatusLoja() {
     const status = document.getElementById("status-loja");
     if (!status) return;
 
-    const agora = new Date();
-    const hora = agora.getHours();
+    const hora = new Date().getHours();
 
-    // Aberto das h até 23h59
     if (hora >= 19 && hora < 24) {
-        status.classList.remove("fechado");
-        status.classList.add("aberto");
+        status.className = "status aberto";
         status.innerText = "🟢 Aberto agora • até 00h";
     } else {
-        status.classList.remove("aberto");
-        status.classList.add("fechado");
-        status.innerText = "🔴 Fechado agora • abre amanhã";
+        status.className = "status fechado";
+        status.innerText = "🔴 Fechado agora • abre às 19h";
     }
 }
 
-// roda ao carregar o site
 atualizarStatusLoja();
