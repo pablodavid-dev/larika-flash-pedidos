@@ -6,11 +6,11 @@ var quantidades = [0, 0, 0, 0, 0, 0];
 
 var precos = [
     39, // 0 - Out Turbo BBQ
-    35, // 1 - Duplo Cheddar Bacon
-    0,  // 2 - não usado (mantido só por segurança)
-    55, // 3 - Combo Casal
-    79, // 4 - Combo Família
-    95  // 5 - Mega Combo Larika
+    29, // 1 - Duplo Cheddar Bacon
+    0,  // 2 - não usado
+    49, // 3 - Combo Casal
+    70, // 4 - Combo Família
+    90  // 5 - Mega Combo Larika
 ];
 
 var nomesCombos = [
