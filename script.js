@@ -62,37 +62,57 @@ function calcularTotal() {
 }
 
 // ================================
-// ENVIAR PEDIDO WHATSAPP
+// ENVIAR PEDIDO WHATSAPP (COM BLOQUEIO)
 // ================================
 
 function enviarPedido() {
-    let mensagem = "Oi, boa noite! 👋\n\nPedido:\n";
-    let temPedido = false;
 
+    const ruaInput = document.getElementById("rua");
+    const bairroSelect = document.getElementById("bairro");
+
+    // valida rua
+    if (!ruaInput.value.trim()) {
+        alert("Preencha o endereço (nome da rua).");
+        ruaInput.focus();
+        return;
+    }
+
+    // valida bairro
+    if (!bairroSelect.value) {
+        alert("Escolha o bairro.");
+        bairroSelect.focus();
+        return;
+    }
+
+    // valida pedido
+    let temPedido = false;
     for (let i = 0; i < quantidades.length; i++) {
         if (quantidades[i] > 0 && nomesCombos[i]) {
-            mensagem += `${quantidades[i]}x ${nomesCombos[i]}\n`;
             temPedido = true;
+            break;
         }
     }
 
     if (!temPedido) {
-        mensagem += "Nenhum item selecionado\n";
+        alert("Adicione pelo menos um item ao pedido.");
+        return;
     }
 
-    const bairroSelect = document.getElementById("bairro");
-    if (bairroSelect.value) {
-        mensagem += `\nBairro: ${bairroSelect.options[bairroSelect.selectedIndex].text}`;
+    // monta mensagem
+    let mensagem = "Oi, boa noite! 👋\n\nPedido:\n";
+
+    for (let i = 0; i < quantidades.length; i++) {
+        if (quantidades[i] > 0 && nomesCombos[i]) {
+            mensagem += `${quantidades[i]}x ${nomesCombos[i]}\n`;
+        }
     }
 
+    mensagem += `\nBairro: ${bairroSelect.options[bairroSelect.selectedIndex].text}`;
+    mensagem += `\nRua: ${ruaInput.value}`;
     mensagem += `\nTotal: R$ ${document.getElementById("total").innerText}`;
 
-    const rua = document.getElementById("rua").value;
-    if (rua.trim()) {
-        mensagem += `\nRua: ${rua}`;
-    }
-
     const numero = "554888509014";
+
     window.open(
         `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`,
         "_blank"
