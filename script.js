@@ -1,20 +1,16 @@
-// ================================
-// MEMÓRIA DO SISTEMA
-// ================================
-
 var quantidades = [0, 0, 0, 0, 0, 0];
 
 var precos = [
-    39, // 0 - Out Turbo BBQ
+    45, // 0 - Combo Promocional
     29, // 1 - Duplo Cheddar Bacon
-    0,  // 2 - não usado
+    0,
     49, // 3 - Combo Casal
-    70, // 4 - Combo Família
-    90  // 5 - Mega Combo Larika
+    69, // 4 - Combo Família
+    89  // 5 - Mega Combo
 ];
 
 var nomesCombos = [
-    "Out Turbo BBQ + Fritas + Refri 200ml",
+    "Combo Promocional (2 Duplo Cheddar Bacon + 2 Refri 200ml)",
     "Duplo Cheddar Bacon + Fritas + Refri 200ml",
     "",
     "Combo Casal",
@@ -22,19 +18,11 @@ var nomesCombos = [
     "Mega Combo Larika"
 ];
 
-// ================================
-// ADICIONAR
-// ================================
-
 function adicionar(index) {
     quantidades[index]++;
     document.getElementById("qtd-" + index).innerText = quantidades[index];
     calcularTotal();
 }
-
-// ================================
-// REMOVER
-// ================================
 
 function remover(index) {
     if (quantidades[index] > 0) {
@@ -44,97 +32,68 @@ function remover(index) {
     }
 }
 
-// ================================
-// CALCULAR TOTAL
-// ================================
-
 function calcularTotal() {
-    var total = 0;
+    let total = 0;
 
-    for (var i = 0; i < quantidades.length; i++) {
+    for (let i = 0; i < quantidades.length; i++) {
         total += quantidades[i] * precos[i];
     }
 
-    var bairroSelect = document.getElementById("bairro");
-    var taxaEntrega = bairroSelect && bairroSelect.value ? Number(bairroSelect.value) : 0;
+    const bairro = document.getElementById("bairro");
+    const taxa = bairro && bairro.value ? Number(bairro.value) : 0;
 
-    document.getElementById("total").innerText = total + taxaEntrega;
+    document.getElementById("total").innerText = total + taxa;
 }
 
-// ================================
-// ENVIAR PEDIDO WHATSAPP (COM BLOQUEIO)
-// ================================
-
 function enviarPedido() {
+    const rua = document.getElementById("rua");
+    const bairro = document.getElementById("bairro");
 
-    const ruaInput = document.getElementById("rua");
-    const bairroSelect = document.getElementById("bairro");
-
-    // valida rua
-    if (!ruaInput.value.trim()) {
-        alert("Preencha o endereço (nome da rua).");
-        ruaInput.focus();
+    if (!rua.value.trim()) {
+        alert("Preencha o endereço.");
         return;
     }
 
-    // valida bairro
-    if (!bairroSelect.value) {
+    if (!bairro.value) {
         alert("Escolha o bairro.");
-        bairroSelect.focus();
         return;
     }
 
-    // valida pedido
+    let mensagem = "Oi, boa noite! 👋\n\nPedido:\n";
+
     let temPedido = false;
     for (let i = 0; i < quantidades.length; i++) {
         if (quantidades[i] > 0 && nomesCombos[i]) {
+            mensagem += `${quantidades[i]}x ${nomesCombos[i]}\n`;
             temPedido = true;
-            break;
         }
     }
 
     if (!temPedido) {
-        alert("Adicione pelo menos um item ao pedido.");
+        alert("Adicione pelo menos um item.");
         return;
     }
 
-    // monta mensagem
-    let mensagem = "Oi, boa noite! 👋\n\nPedido:\n";
-
-    for (let i = 0; i < quantidades.length; i++) {
-        if (quantidades[i] > 0 && nomesCombos[i]) {
-            mensagem += `${quantidades[i]}x ${nomesCombos[i]}\n`;
-        }
-    }
-
-    mensagem += `\nBairro: ${bairroSelect.options[bairroSelect.selectedIndex].text}`;
-    mensagem += `\nRua: ${ruaInput.value}`;
+    mensagem += `\nBairro: ${bairro.options[bairro.selectedIndex].text}`;
+    mensagem += `\nRua: ${rua.value}`;
     mensagem += `\nTotal: R$ ${document.getElementById("total").innerText}`;
 
-    const numero = "554888509014";
-
     window.open(
-        `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`,
+        `https://wa.me/554888509014?text=${encodeURIComponent(mensagem)}`,
         "_blank"
     );
 }
 
-// ================================
-// STATUS DA LOJA
-// ================================
-
 function atualizarStatusLoja() {
     const status = document.getElementById("status-loja");
-    if (!status) return;
-
     const hora = new Date().getHours();
 
-    if (hora >= 19 && hora < 24) {
+    if (hora >= 18 && hora < 24) {
         status.className = "status aberto";
         status.innerText = "🟢 Aberto agora • até 00h";
     } else {
         status.className = "status fechado";
-        status.innerText = "🔴 Fechado agora • abre às 19h";
+        status.innerText = "🔴 Fechado agora • abre às 18h";
     }
 }
 
