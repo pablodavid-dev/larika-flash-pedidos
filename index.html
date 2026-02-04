@@ -10,19 +10,15 @@
 <body>
 <div class="container">
 
-    <!-- LOGO -->
     <div class="logo">
         <img src="logo.png" alt="Larika Flash">
     </div>
 
-    <!-- STATUS -->
     <div id="status-loja" class="status fechado">
-        🔴 Fechado • abre às 19h
+        🔴 Fechado • abre às 18h
     </div>
 
     <h2>Escolha o seu combo</h2>
-
-    <!-- COMBOS -->
 
     <!-- DUPLO -->
     <div class="combo">
@@ -46,21 +42,14 @@
         </div>
     </div>
 
-    <!-- TURBO -->
+    <!-- COMBO PROMOCIONAL -->
     <div class="combo">
-        <img src="flash.png" class="combo-img" alt="Out Turbo BBQ">
-        <h3>Out Turbo BBQ + Fritas + Refri 200ml — R$ 39</h3>
+        <img src="flash.png" class="combo-img" alt="Combo Promocional">
+        <h3>Combo Promocional — R$ 45</h3>
         <p>
-            • Pão brioche<br>
-            • 4 carnes (60g cada)<br>
-            • Bacon crocante<br>
-            • Queijo mussarela<br>
-            • Queijo Cheddar<br>
-            • Molho cheddar<br>
-            • Molho da casa<br>
-            • Barbecue<br>
-            • Cebola roxa
-        </p> 
+            • 2 Duplo Cheddar Bacon<br>
+            • 2 Refri 200ml
+        </p>
         <div class="controls">
             <button onclick="remover(0)">-</button>
             <span id="qtd-0">0</span>
@@ -69,8 +58,7 @@
     </div>
 
     <!-- CASAL -->
-    <div class="combo destaque">
-        <span class="badge-mais-vendido">Mais vendido</span>
+    <div class="combo">
         <img src="casal.png" class="combo-img" alt="Combo Casal">
         <h3>Combo Casal — R$ 49</h3>
         <p>
@@ -86,9 +74,10 @@
     </div>
 
     <!-- FAMÍLIA -->
-    <div class="combo">
+    <div class="combo destaque">
+        <span class="badge-mais-vendido">Mais vendido</span>
         <img src="familia.png" class="combo-img" alt="Combo Família">
-        <h3>Combo Família — R$ 70</h3>
+        <h3>Combo Família — R$ 69</h3>
         <p>
             • 3 Duplo Cheddar Bacon<br>
             • 3 Fritas<br>
@@ -104,7 +93,7 @@
     <!-- MEGA -->
     <div class="combo">
         <img src="mega.png" class="combo-img" alt="Mega Combo Larika">
-        <h3>MEGA COMBO LARIKA — R$ 90</h3>
+        <h3>MEGA COMBO LARIKA — R$ 89</h3>
         <p>
             • 4 Duplo Cheddar Bacon<br>
             • 4 Fritas<br>
@@ -117,7 +106,6 @@
         </div>
     </div>
 
-    <!-- RESUMO -->
     <div class="resumo">
         <h2>Endereço</h2>
 
@@ -125,7 +113,7 @@
 
         <select id="bairro" onchange="calcularTotal()">
             <option value="">Selecione o bairro</option>
-            <option value="4">Rio Vermelho — R$ 4</option>
+            <option value="1">Rio Vermelho — R$ 1</option>
             <option value="6">Ingleses — R$ 6</option>
         </select>
 
@@ -142,5 +130,3 @@
 <script src="script.js"></script>
 </body>
 </html>
-
-
