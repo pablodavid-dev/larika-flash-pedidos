@@ -1,13 +1,6 @@
 var quantidades = [0, 0, 0, 0, 0, 0];
 
-var precos = [
-    45, // 0 - Combo Promocional
-    29, // 1 - Duplo Cheddar Bacon
-    0,
-    49, // 3 - Combo Casal
-    69, // 4 - Combo Família
-    89  // 5 - Mega Combo
-];
+var precos = [45, 29, 0, 49, 69, 89];
 
 var nomesCombos = [
     "Combo Promocional (2 Duplo Cheddar Bacon + 2 Refri 200ml)",
@@ -34,7 +27,6 @@ function remover(index) {
 
 function calcularTotal() {
     let total = 0;
-
     for (let i = 0; i < quantidades.length; i++) {
         total += quantidades[i] * precos[i];
     }
@@ -46,6 +38,12 @@ function calcularTotal() {
 }
 
 function enviarPedido() {
+    const estadoManual = localStorage.getItem("loja_status");
+    if (estadoManual === "fechada") {
+        alert("A loja está fechada no momento. Tente mais tarde.");
+        return;
+    }
+
     const rua = document.getElementById("rua");
     const bairro = document.getElementById("bairro");
 
@@ -60,8 +58,8 @@ function enviarPedido() {
     }
 
     let mensagem = "Oi, boa noite! 👋\n\nPedido:\n";
-
     let temPedido = false;
+
     for (let i = 0; i < quantidades.length; i++) {
         if (quantidades[i] > 0 && nomesCombos[i]) {
             mensagem += `${quantidades[i]}x ${nomesCombos[i]}\n`;
@@ -86,8 +84,21 @@ function enviarPedido() {
 
 function atualizarStatusLoja() {
     const status = document.getElementById("status-loja");
-    const hora = new Date().getHours();
+    const estado = localStorage.getItem("loja_status");
 
+    if (estado === "fechada") {
+        status.className = "status fechado";
+        status.innerText = "🔴 Fechado agora";
+        return;
+    }
+
+    if (estado === "aberta") {
+        status.className = "status aberto";
+        status.innerText = "🟢 Aberto agora";
+        return;
+    }
+
+    const hora = new Date().getHours();
     if (hora >= 18 && hora < 24) {
         status.className = "status aberto";
         status.innerText = "🟢 Aberto agora • até 00h";
@@ -96,5 +107,28 @@ function atualizarStatusLoja() {
         status.innerText = "🔴 Fechado agora • abre às 18h";
     }
 }
+
+function toggleLoja() {
+    const estado = localStorage.getItem("loja_status");
+    localStorage.setItem("loja_status", estado === "aberta" ? "fechada" : "aberta");
+    atualizarStatusLoja();
+}
+
+// PC — atalho secreto
+document.addEventListener("keydown", function (e) {
+    if (e.ctrlKey && e.shiftKey && e.key === "A") {
+        document.getElementById("admin-toggle").style.display = "block";
+    }
+});
+
+// CELULAR — tocar 5x no logo
+let toques = 0;
+document.getElementById("logo-admin").addEventListener("click", function () {
+    toques++;
+    if (toques === 5) {
+        document.getElementById("admin-toggle").style.display = "block";
+        toques = 0;
+    }
+});
 
 atualizarStatusLoja();
