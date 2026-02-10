@@ -10,7 +10,7 @@
 <body>
 <div class="container">
 
-    <div class="logo">
+    <div class="logo" id="logo-admin">
         <img src="logo.png" alt="Larika Flash">
     </div>
 
@@ -18,7 +18,6 @@
         🔴 Fechado • abre às 18h
     </div>
 
-    <!-- BOTÃO ADMIN (SÓ APARECE COM ATALHO) -->
     <button id="admin-toggle" onclick="toggleLoja()" style="display:none; margin:10px auto;">
         🔒 Abrir / Fechar loja
     </button>
@@ -36,7 +35,6 @@
             • Queijo Cheddar<br>
             • Molho cheddar<br>
             • Molho da casa<br>
-            • Alface<br>
             • Tomate<br>
             • Cebola roxa
         </p>
@@ -50,10 +48,10 @@
     <!-- COMBO PROMOCIONAL -->
     <div class="combo">
         <img src="flash.png" class="combo-img" alt="Combo Promocional">
-        <h3>Combo Promocional — R$ 45</h3>
+        <h3>Combo Promocional — R$ 42</h3>
         <p>
             • 2 Duplo Cheddar Bacon<br>
-            • 2 Refri 200ml
+            • 2 Refris 200ml
         </p>
         <div class="controls">
             <button onclick="remover(0)">-</button>
@@ -69,7 +67,7 @@
         <p>
             • 2 Duplo Cheddar Bacon<br>
             • 2 Fritas<br>
-            • 2 Refri 200ml
+            • 2 Refris 200ml
         </p>
         <div class="controls">
             <button onclick="remover(3)">-</button>
@@ -86,7 +84,7 @@
         <p>
             • 3 Duplo Cheddar Bacon<br>
             • 3 Fritas<br>
-            • 1 Refri 1,5L
+            • 3 Refris 200ml
         </p>
         <div class="controls">
             <button onclick="remover(4)">-</button>
