@@ -1,6 +1,13 @@
 var quantidades = [0, 0, 0, 0, 0, 0];
 
-var precos = [45, 29, 0, 49, 69, 89];
+var precos = [
+    42, // 0 - Combo Promocional (ALTERADO)
+    29, // 1 - Duplo Cheddar Bacon
+    0,
+    49, // 3 - Combo Casal
+    69, // 4 - Combo Família
+    89  // 5 - Mega Combo
+];
 
 var nomesCombos = [
     "Combo Promocional (2 Duplo Cheddar Bacon + 2 Refri 200ml)",
@@ -27,6 +34,7 @@ function remover(index) {
 
 function calcularTotal() {
     let total = 0;
+
     for (let i = 0; i < quantidades.length; i++) {
         total += quantidades[i] * precos[i];
     }
@@ -40,7 +48,7 @@ function calcularTotal() {
 function enviarPedido() {
     const estadoManual = localStorage.getItem("loja_status");
     if (estadoManual === "fechada") {
-        alert("A loja está fechada no momento. Tente mais tarde.");
+        alert("A loja está fechada no momento.");
         return;
     }
 
@@ -114,14 +122,14 @@ function toggleLoja() {
     atualizarStatusLoja();
 }
 
-// PC — atalho secreto
+// PC
 document.addEventListener("keydown", function (e) {
     if (e.ctrlKey && e.shiftKey && e.key === "A") {
         document.getElementById("admin-toggle").style.display = "block";
     }
 });
 
-// CELULAR — tocar 5x no logo
+// CELULAR
 let toques = 0;
 document.getElementById("logo-admin").addEventListener("click", function () {
     toques++;
