@@ -1,7 +1,7 @@
 var quantidades = [0, 0, 0, 0, 0, 0];
 
 var precos = [
-    42, // 0 - Combo Promocional (ALTERADO)
+    40, // 0 - Combo Larika
     29, // 1 - Duplo Cheddar Bacon
     0,
     49, // 3 - Combo Casal
@@ -10,7 +10,7 @@ var precos = [
 ];
 
 var nomesCombos = [
-    "Combo Promocional (2 Duplo Cheddar Bacon + 2 Refri 200ml)",
+    "Combo Larika (2 Duplo Cheddar Bacon + 2 Refri 200ml)",
     "Duplo Cheddar Bacon + Fritas + Refri 200ml",
     "",
     "Combo Casal",
@@ -46,9 +46,11 @@ function calcularTotal() {
 }
 
 function enviarPedido() {
+
+    // BLOQUEIO SE LOJA ESTIVER FECHADA
     const estadoManual = localStorage.getItem("loja_status");
     if (estadoManual === "fechada") {
-        alert("A loja está fechada no momento.");
+        alert("A loja está fechada no momento. Tente mais tarde.");
         return;
     }
 
@@ -118,25 +120,37 @@ function atualizarStatusLoja() {
 
 function toggleLoja() {
     const estado = localStorage.getItem("loja_status");
-    localStorage.setItem("loja_status", estado === "aberta" ? "fechada" : "aberta");
+
+    if (estado === "aberta") {
+        localStorage.setItem("loja_status", "fechada");
+        alert("Loja FECHADA manualmente.");
+    } else {
+        localStorage.setItem("loja_status", "aberta");
+        alert("Loja ABERTA manualmente.");
+    }
+
     atualizarStatusLoja();
 }
 
-// PC
+// PC — Atalho secreto
 document.addEventListener("keydown", function (e) {
     if (e.ctrlKey && e.shiftKey && e.key === "A") {
         document.getElementById("admin-toggle").style.display = "block";
     }
 });
 
-// CELULAR
+// CELULAR — 5 toques no logo
 let toques = 0;
-document.getElementById("logo-admin").addEventListener("click", function () {
-    toques++;
-    if (toques === 5) {
-        document.getElementById("admin-toggle").style.display = "block";
-        toques = 0;
-    }
-});
+const logoAdmin = document.getElementById("logo-admin");
+
+if (logoAdmin) {
+    logoAdmin.addEventListener("click", function () {
+        toques++;
+        if (toques === 5) {
+            document.getElementById("admin-toggle").style.display = "block";
+            toques = 0;
+        }
+    });
+}
 
 atualizarStatusLoja();
