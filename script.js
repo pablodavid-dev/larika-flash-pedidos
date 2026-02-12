@@ -45,12 +45,15 @@ function calcularTotal() {
     document.getElementById("total").innerText = total + taxa;
 }
 
+function lojaAbertaAgora() {
+    const hora = new Date().getHours();
+    return (hora >= 18 && hora < 24);
+}
+
 function enviarPedido() {
 
-    // BLOQUEIO SE LOJA ESTIVER FECHADA
-    const estadoManual = localStorage.getItem("loja_status");
-    if (estadoManual === "fechada") {
-        alert("A loja está fechada no momento. Tente mais tarde.");
+    if (!lojaAbertaAgora()) {
+        alert("A loja está fechada no momento. Funcionamos das 18h às 00h.");
         return;
     }
 
@@ -94,63 +97,14 @@ function enviarPedido() {
 
 function atualizarStatusLoja() {
     const status = document.getElementById("status-loja");
-    const estado = localStorage.getItem("loja_status");
 
-    if (estado === "fechada") {
-        status.className = "status fechado";
-        status.innerText = "🔴 Fechado agora";
-        return;
-    }
-
-    if (estado === "aberta") {
-        status.className = "status aberto";
-        status.innerText = "🟢 Aberto agora";
-        return;
-    }
-
-    const hora = new Date().getHours();
-    if (hora >= 18 && hora < 24) {
+    if (lojaAbertaAgora()) {
         status.className = "status aberto";
         status.innerText = "🟢 Aberto agora • até 00h";
     } else {
         status.className = "status fechado";
         status.innerText = "🔴 Fechado agora • abre às 18h";
     }
-}
-
-function toggleLoja() {
-    const estado = localStorage.getItem("loja_status");
-
-    if (estado === "aberta") {
-        localStorage.setItem("loja_status", "fechada");
-        alert("Loja FECHADA manualmente.");
-    } else {
-        localStorage.setItem("loja_status", "aberta");
-        alert("Loja ABERTA manualmente.");
-    }
-
-    atualizarStatusLoja();
-}
-
-// PC — Atalho secreto
-document.addEventListener("keydown", function (e) {
-    if (e.ctrlKey && e.shiftKey && e.key === "A") {
-        document.getElementById("admin-toggle").style.display = "block";
-    }
-});
-
-// CELULAR — 5 toques no logo
-let toques = 0;
-const logoAdmin = document.getElementById("logo-admin");
-
-if (logoAdmin) {
-    logoAdmin.addEventListener("click", function () {
-        toques++;
-        if (toques === 5) {
-            document.getElementById("admin-toggle").style.display = "block";
-            toques = 0;
-        }
-    });
 }
 
 atualizarStatusLoja();
