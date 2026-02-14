@@ -42,7 +42,10 @@ function calcularTotal() {
     const bairro = document.getElementById("bairro");
     const taxa = bairro && bairro.value ? Number(bairro.value) : 0;
 
-    document.getElementById("total").innerText = total + taxa;
+    total += taxa;
+
+    document.getElementById("total").innerText =
+        total.toFixed(2).replace(".", ",");
 }
 
 function lojaAbertaAgora() {
@@ -70,12 +73,12 @@ function enviarPedido() {
         return;
     }
 
-    let mensagem = "Oi, boa noite! 👋\n\nPedido:\n";
+    let mensagem = "PEDIDO - LARIKA FLASH\n\n";
     let temPedido = false;
 
     for (let i = 0; i < quantidades.length; i++) {
         if (quantidades[i] > 0 && nomesCombos[i]) {
-            mensagem += `${quantidades[i]}x ${nomesCombos[i]}\n`;
+            mensagem += quantidades[i] + "x " + nomesCombos[i] + "\n";
             temPedido = true;
         }
     }
@@ -85,12 +88,13 @@ function enviarPedido() {
         return;
     }
 
-    mensagem += `\nBairro: ${bairro.options[bairro.selectedIndex].text}`;
-    mensagem += `\nRua: ${rua.value}`;
-    mensagem += `\nTotal: R$ ${document.getElementById("total").innerText}`;
+    mensagem += "\nENDERECO\n";
+    mensagem += "Rua: " + rua.value + "\n";
+    mensagem += "Bairro: " + bairro.options[bairro.selectedIndex].text + "\n\n";
+    mensagem += "TOTAL: R$ " + document.getElementById("total").innerText;
 
     window.open(
-        `https://wa.me/554888509014?text=${encodeURIComponent(mensagem)}`,
+        "https://wa.me/554888509014?text=" + encodeURIComponent(mensagem),
         "_blank"
     );
 }
@@ -100,10 +104,10 @@ function atualizarStatusLoja() {
 
     if (lojaAbertaAgora()) {
         status.className = "status aberto";
-        status.innerText = "🟢 Aberto agora • até 00h";
+        status.innerText = "Aberto agora - ate 00h";
     } else {
         status.className = "status fechado";
-        status.innerText = "🔴 Fechado agora • abre às 18h";
+        status.innerText = "Fechado agora - abre as 18h";
     }
 }
 
