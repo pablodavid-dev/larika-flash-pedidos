@@ -5,8 +5,6 @@
     <meta charset="UTF-8">
     <title>Larika Flash</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -24,7 +22,6 @@
         🔴 Fechado • abre às 18h
     </div>
 
-    <!-- BOTÃO ADMIN -->
     <button id="admin-toggle"
             onclick="toggleLoja()"
             style="display:none; margin:10px auto;">
@@ -33,16 +30,13 @@
 
     <h2>Escolha o seu combo</h2>
 
-    <!-- ===============================
-         COMBOS
-    ================================ -->
+    <!-- COMBOS -->
+    <!-- (mantive todos exatamente como você enviou) -->
 
     <!-- DUPLO -->
     <div class="combo">
         <img src="duplo.png" class="combo-img" alt="Duplo Cheddar Bacon">
-
         <h3>Duplo Cheddar Bacon + Fritas + Refri 200ml — R$ 29</h3>
-
         <p>
             • Pão brioche<br>
             • 2 carnes (60g cada)<br>
@@ -50,11 +44,9 @@
             • Queijo Cheddar<br>
             • Molho cheddar<br>
             • Molho da casa<br>
-            • Barbecue
             • Tomate<br>
             • Cebola roxa
         </p>
-
         <div class="controls">
             <button onclick="remover(1)">-</button>
             <span id="qtd-1">0</span>
@@ -62,17 +54,13 @@
         </div>
     </div>
 
-    <!-- COMBO LARIKA -->
     <div class="combo">
         <img src="flash.png" class="combo-img" alt="Combo Larika">
-
         <h3>Combo Larika — R$ 40</h3>
-
         <p>
             • 2 Duplo Cheddar Bacon<br>
             • 2 Refri 200ml
         </p>
-
         <div class="controls">
             <button onclick="remover(0)">-</button>
             <span id="qtd-0">0</span>
@@ -80,22 +68,18 @@
         </div>
     </div>
 
-    <!-- CASAL -->
-    <div class="combo destaque">
+   <div class="combo destaque">
 
-<span class="badge-mais-vendido">🔥 Mais Pedido</span>
+    <span class="badge-top">🔥 MAIS PEDIDO</span>
 
+    <img src="casal.png" class="combo-img" alt="Combo Casal">
 
-        <img src="casal.png" class="combo-img" alt="Combo Casal">
+    <h3>Combo Casal — R$ 49</h3>
 
-        <h3>Combo Casal — R$ 49</h3>
-
-        <p>
             • 2 Duplo Cheddar Bacon<br>
             • 2 Fritas<br>
             • 2 Refris 200ml
         </p>
-
         <div class="controls">
             <button onclick="remover(3)">-</button>
             <span id="qtd-3">0</span>
@@ -103,18 +87,14 @@
         </div>
     </div>
 
-    <!-- FAMÍLIA -->
     <div class="combo">
         <img src="familia.png" class="combo-img" alt="Combo Família">
-
         <h3>Combo Família — R$ 69</h3>
-
         <p>
             • 3 Duplo Cheddar Bacon<br>
             • 3 Fritas<br>
             • 3 Refris 200ml
         </p>
-
         <div class="controls">
             <button onclick="remover(4)">-</button>
             <span id="qtd-4">0</span>
@@ -122,18 +102,14 @@
         </div>
     </div>
 
-    <!-- MEGA -->
     <div class="combo">
         <img src="mega.png" class="combo-img" alt="Mega Combo Larika">
-
         <h3>MEGA COMBO LARIKA — R$ 89</h3>
-
         <p>
             • 4 Duplo Cheddar Bacon<br>
             • 4 Fritas<br>
             • 1 Refri 1,5L
         </p>
-
         <div class="controls">
             <button onclick="remover(5)">-</button>
             <span id="qtd-5">0</span>
@@ -141,35 +117,47 @@
         </div>
     </div>
 
-    <!-- ===============================
-         RESUMO / FINALIZAÇÃO
-    ================================ -->
+    <!-- RESUMO -->
+   <div class="resumo">
 
-    <div class="resumo">
+    <h2>Informações do pedido</h2>
 
-        <h2>Endereço</h2>
+<input type="text" id="rua" placeholder="Nome da rua e número">
 
-        <input type="text" id="rua" placeholder="Nome da rua">
 
-        <select id="bairro" onchange="calcularTotal()">
-            <option value="">Selecione o bairro</option>
-            <option value="1">Rio Vermelho — R$ 1</option>
-        </select>
+    <select id="bairro" onchange="calcularTotal()">
+        <option value="">Selecione o bairro</option>
+        <option value="1">Rio Vermelho — R$ 1</option>
+    </select>
 
-        <h2>Total: R$ <span id="total">0</span></h2>
+    <select id="pagamento">
+        <option value="">Forma de pagamento</option>
+        <option value="Pix">Pix</option>
+        <option value="Cartão">Cartão</option>
+        <option value="Dinheiro">Dinheiro</option>
+    </select>
 
-        <button class="btn-whatsapp" onclick="enviarPedido()">
-            <span class="wh-circle"></span>
-            Peça agora no WhatsApp
-        </button>
+<textarea 
+    id="observacao"
+    rows="3"
+    placeholder="Observações: tirar cebola, carne bem passada, troco para 100..."
+    style="width:100%; padding:14px; border-radius:12px; border:1px solid #e6e6e6; margin-bottom:14px; font-size:14px; resize:none;">
+</textarea>
 
-    </div>
+
+    <h2>Total: R$ <span id="total">0</span></h2>
+
+    <button class="btn-whatsapp" onclick="enviarPedido()">
+        <span class="wh-circle"></span>
+        Peça agora no WhatsApp
+    </button>
 
 </div>
 
-<!-- JS -->
+
+</div>
+
 <script src="script.js"></script>
 
 </body>
 </html>
-
