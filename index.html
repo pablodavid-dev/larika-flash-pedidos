@@ -1,33 +1,48 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <title>Larika Flash</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+
 <div class="container">
 
+    <!-- LOGO -->
     <div class="logo" id="logo-admin">
         <img src="logo.png" alt="Larika Flash">
     </div>
 
+    <!-- STATUS DA LOJA -->
     <div id="status-loja" class="status fechado">
         🔴 Fechado • abre às 18h
     </div>
 
-    <button id="admin-toggle" onclick="toggleLoja()" style="display:none; margin:10px auto;">
+    <!-- BOTÃO ADMIN -->
+    <button id="admin-toggle"
+            onclick="toggleLoja()"
+            style="display:none; margin:10px auto;">
         🔒 Abrir / Fechar loja
     </button>
 
     <h2>Escolha o seu combo</h2>
 
+    <!-- ===============================
+         COMBOS
+    ================================ -->
+
     <!-- DUPLO -->
     <div class="combo">
         <img src="duplo.png" class="combo-img" alt="Duplo Cheddar Bacon">
+
         <h3>Duplo Cheddar Bacon + Fritas + Refri 200ml — R$ 29</h3>
+
         <p>
             • Pão brioche<br>
             • 2 carnes (60g cada)<br>
@@ -38,6 +53,7 @@
             • Tomate<br>
             • Cebola roxa
         </p>
+
         <div class="controls">
             <button onclick="remover(1)">-</button>
             <span id="qtd-1">0</span>
@@ -45,32 +61,40 @@
         </div>
     </div>
 
-<!-- COMBO LARIKA -->
-<div class="combo destaque">
-    <span class="badge-mais-vendido">🔥 Mais Pedido</span>
-    <img src="flash.png" class="combo-img" alt="Combo Larika">
-    <h3>Combo Larika — R$ 40</h3>
-    <p>
-        • 2 Duplo Cheddar Bacon<br>
-        • 2 Refri 200ml
-    </p>
-    <div class="controls">
-        <button onclick="remover(0)">-</button>
-        <span id="qtd-0">0</span>
-        <button onclick="adicionar(0)">+</button>
-    </div>
-</div>
+    <!-- COMBO LARIKA -->
+    <div class="combo">
+        <img src="flash.png" class="combo-img" alt="Combo Larika">
 
+        <h3>Combo Larika — R$ 40</h3>
+
+        <p>
+            • 2 Duplo Cheddar Bacon<br>
+            • 2 Refri 200ml
+        </p>
+
+        <div class="controls">
+            <button onclick="remover(0)">-</button>
+            <span id="qtd-0">0</span>
+            <button onclick="adicionar(0)">+</button>
+        </div>
+    </div>
 
     <!-- CASAL -->
-    <div class="combo">
+    <div class="combo destaque">
+
+<span class="badge-mais-vendido">🔥 Mais Pedido</span>
+
+
         <img src="casal.png" class="combo-img" alt="Combo Casal">
+
         <h3>Combo Casal — R$ 49</h3>
+
         <p>
             • 2 Duplo Cheddar Bacon<br>
             • 2 Fritas<br>
             • 2 Refris 200ml
         </p>
+
         <div class="controls">
             <button onclick="remover(3)">-</button>
             <span id="qtd-3">0</span>
@@ -81,12 +105,15 @@
     <!-- FAMÍLIA -->
     <div class="combo">
         <img src="familia.png" class="combo-img" alt="Combo Família">
+
         <h3>Combo Família — R$ 69</h3>
+
         <p>
             • 3 Duplo Cheddar Bacon<br>
             • 3 Fritas<br>
             • 3 Refris 200ml
         </p>
+
         <div class="controls">
             <button onclick="remover(4)">-</button>
             <span id="qtd-4">0</span>
@@ -97,12 +124,15 @@
     <!-- MEGA -->
     <div class="combo">
         <img src="mega.png" class="combo-img" alt="Mega Combo Larika">
+
         <h3>MEGA COMBO LARIKA — R$ 89</h3>
+
         <p>
             • 4 Duplo Cheddar Bacon<br>
             • 4 Fritas<br>
             • 1 Refri 1,5L
         </p>
+
         <div class="controls">
             <button onclick="remover(5)">-</button>
             <span id="qtd-5">0</span>
@@ -110,7 +140,12 @@
         </div>
     </div>
 
+    <!-- ===============================
+         RESUMO / FINALIZAÇÃO
+    ================================ -->
+
     <div class="resumo">
+
         <h2>Endereço</h2>
 
         <input type="text" id="rua" placeholder="Nome da rua">
@@ -123,13 +158,16 @@
         <h2>Total: R$ <span id="total">0</span></h2>
 
         <button class="btn-whatsapp" onclick="enviarPedido()">
-            <img src="whatsapp.png" alt="WhatsApp">
-            Realizar Pedido
+            <span class="wh-circle"></span>
+            Peça agora no WhatsApp
         </button>
+
     </div>
 
 </div>
 
+<!-- JS -->
 <script src="script.js"></script>
+
 </body>
 </html>
