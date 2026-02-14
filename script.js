@@ -1,12 +1,12 @@
 var quantidades = [0, 0, 0, 0, 0, 0];
 
 var precos = [
-    40, // 0 - Combo Larika
-    29, // 1 - Duplo Cheddar Bacon
+    40,
+    29,
     0,
-    49, // 3 - Combo Casal
-    69, // 4 - Combo Família
-    89  // 5 - Mega Combo
+    49,
+    69,
+    89
 ];
 
 var nomesCombos = [
@@ -48,20 +48,12 @@ function calcularTotal() {
         total.toFixed(2).replace(".", ",");
 }
 
-function lojaAbertaAgora() {
-    const hora = new Date().getHours();
-    return (hora >= 18 && hora < 24);
-}
-
 function enviarPedido() {
-
-    if (!lojaAbertaAgora()) {
-        alert("A loja está fechada no momento. Funcionamos das 18h às 00h.");
-        return;
-    }
 
     const rua = document.getElementById("rua");
     const bairro = document.getElementById("bairro");
+    const pagamento = document.getElementById("pagamento");
+    const observacao = document.getElementById("observacao");
 
     if (!rua.value.trim()) {
         alert("Preencha o endereço.");
@@ -70,6 +62,11 @@ function enviarPedido() {
 
     if (!bairro.value) {
         alert("Escolha o bairro.");
+        return;
+    }
+
+    if (!pagamento.value) {
+        alert("Escolha a forma de pagamento.");
         return;
     }
 
@@ -88,10 +85,17 @@ function enviarPedido() {
         return;
     }
 
-    mensagem += "\nENDERECO\n";
-    mensagem += "Rua: " + rua.value + "\n";
-    mensagem += "Bairro: " + bairro.options[bairro.selectedIndex].text + "\n\n";
-    mensagem += "TOTAL: R$ " + document.getElementById("total").innerText;
+    mensagem += "\nINFORMAÇÕES\n";
+    mensagem += "Endereço: " + rua.value + "\n";
+    mensagem += "Bairro: " + bairro.options[bairro.selectedIndex].text + "\n";
+    mensagem += "Pagamento: " + pagamento.value + "\n";
+
+    if (observacao.value.trim() !== "") {
+        mensagem += "\nOBSERVAÇÃO\n";
+        mensagem += observacao.value + "\n";
+    }
+
+    mensagem += "\nTOTAL: R$ " + document.getElementById("total").innerText;
 
     window.open(
         "https://wa.me/554888509014?text=" + encodeURIComponent(mensagem),
@@ -99,16 +103,14 @@ function enviarPedido() {
     );
 }
 
+/* ===============================
+   STATUS LOJA - FORÇADO ABERTO
+=============================== */
+
 function atualizarStatusLoja() {
     const status = document.getElementById("status-loja");
-
-    if (lojaAbertaAgora()) {
-        status.className = "status aberto";
-        status.innerText = "Aberto agora - ate 00h";
-    } else {
-        status.className = "status fechado";
-        status.innerText = "Fechado agora - abre as 18h";
-    }
+    status.className = "status aberto";
+    status.innerText = "🟢 Aberto agora - pedidos liberados";
 }
 
 atualizarStatusLoja();
