@@ -20,16 +20,19 @@ var nomesCombos = [
 
 function adicionar(index) {
     quantidades[index]++;
-    document.getElementById("qtd-" + index).innerText = quantidades[index];
-    calcularTotal();
+    atualizarQuantidade(index);
 }
 
 function remover(index) {
     if (quantidades[index] > 0) {
         quantidades[index]--;
-        document.getElementById("qtd-" + index).innerText = quantidades[index];
-        calcularTotal();
+        atualizarQuantidade(index);
     }
+}
+
+function atualizarQuantidade(index) {
+    document.getElementById("qtd-" + index).innerText = quantidades[index];
+    calcularTotal();
 }
 
 function calcularTotal() {
@@ -40,7 +43,7 @@ function calcularTotal() {
     }
 
     const bairro = document.getElementById("bairro");
-    const taxa = bairro && bairro.value ? Number(bairro.value) : 0;
+    const taxa = bairro.value ? Number(bairro.value) : 0;
 
     total += taxa;
 
@@ -90,7 +93,7 @@ function enviarPedido() {
     mensagem += "Bairro: " + bairro.options[bairro.selectedIndex].text + "\n";
     mensagem += "Pagamento: " + pagamento.value + "\n";
 
-    if (observacao.value.trim() !== "") {
+    if (observacao.value.trim()) {
         mensagem += "\nOBSERVAÇÃO\n";
         mensagem += observacao.value + "\n";
     }
@@ -103,9 +106,7 @@ function enviarPedido() {
     );
 }
 
-/* ===============================
-   STATUS LOJA - FORÇADO ABERTO
-=============================== */
+/* STATUS LOJA - ABERTA */
 
 function atualizarStatusLoja() {
     const status = document.getElementById("status-loja");
@@ -114,4 +115,3 @@ function atualizarStatusLoja() {
 }
 
 atualizarStatusLoja();
-
