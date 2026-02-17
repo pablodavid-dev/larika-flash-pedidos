@@ -43,7 +43,7 @@ function calcularTotal() {
     }
 
     const bairro = document.getElementById("bairro");
-    const taxa = bairro.value ? Number(bairro.value) : 0;
+    const taxa = bairro && bairro.value ? Number(bairro.value) : 0;
 
     total += taxa;
 
@@ -58,21 +58,6 @@ function enviarPedido() {
     const pagamento = document.getElementById("pagamento");
     const observacao = document.getElementById("observacao");
 
-    if (!rua.value.trim()) {
-        alert("Preencha o endereço.");
-        return;
-    }
-
-    if (!bairro.value) {
-        alert("Escolha o bairro.");
-        return;
-    }
-
-    if (!pagamento.value) {
-        alert("Escolha a forma de pagamento.");
-        return;
-    }
-
     let mensagem = "PEDIDO - LARIKA FLASH\n\n";
     let temPedido = false;
 
@@ -83,17 +68,27 @@ function enviarPedido() {
         }
     }
 
+    // 🔴 BLOQUEIA SE NÃO TIVER ITEM
     if (!temPedido) {
-        alert("Adicione pelo menos um item.");
+        alert("Adicione pelo menos um item ao pedido.");
         return;
     }
 
     mensagem += "\nINFORMAÇÕES\n";
-    mensagem += "Endereço: " + rua.value + "\n";
-    mensagem += "Bairro: " + bairro.options[bairro.selectedIndex].text + "\n";
-    mensagem += "Pagamento: " + pagamento.value + "\n";
 
-    if (observacao.value.trim()) {
+    if (rua && rua.value.trim()) {
+        mensagem += "Endereço: " + rua.value + "\n";
+    }
+
+    if (bairro && bairro.value) {
+        mensagem += "Bairro: " + bairro.options[bairro.selectedIndex].text + "\n";
+    }
+
+    if (pagamento && pagamento.value) {
+        mensagem += "Pagamento: " + pagamento.value + "\n";
+    }
+
+    if (observacao && observacao.value.trim()) {
         mensagem += "\nOBSERVAÇÃO\n";
         mensagem += observacao.value + "\n";
     }
