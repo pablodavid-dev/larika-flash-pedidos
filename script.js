@@ -1,3 +1,5 @@
+var lojaAberta = false; // 🔒 LOJA FECHADA
+
 var quantidades = [0, 0, 0, 0, 0, 0];
 
 var precos = [
@@ -19,11 +21,23 @@ var nomesCombos = [
 ];
 
 function adicionar(index) {
+
+    if (!lojaAberta) {
+        alert("🚫 Estamos fechados no momento!");
+        return;
+    }
+
     quantidades[index]++;
     atualizarQuantidade(index);
 }
 
 function remover(index) {
+
+    if (!lojaAberta) {
+        alert("🚫 Estamos fechados no momento!");
+        return;
+    }
+
     if (quantidades[index] > 0) {
         quantidades[index]--;
         atualizarQuantidade(index);
@@ -36,6 +50,7 @@ function atualizarQuantidade(index) {
 }
 
 function calcularTotal() {
+
     let total = 0;
 
     for (let i = 0; i < quantidades.length; i++) {
@@ -53,6 +68,11 @@ function calcularTotal() {
 
 function enviarPedido() {
 
+    if (!lojaAberta) {
+        alert("🚫 A loja está fechada no momento.\nVoltamos em breve!");
+        return;
+    }
+
     const rua = document.getElementById("rua");
     const bairro = document.getElementById("bairro");
     const pagamento = document.getElementById("pagamento");
@@ -68,7 +88,6 @@ function enviarPedido() {
         }
     }
 
-    // 🔴 BLOQUEIA SE NÃO TIVER ITEM
     if (!temPedido) {
         alert("Adicione pelo menos um item ao pedido.");
         return;
@@ -101,12 +120,12 @@ function enviarPedido() {
     );
 }
 
-/* STATUS LOJA - ABERTA */
+/* STATUS LOJA - FECHADA */
 
 function atualizarStatusLoja() {
     const status = document.getElementById("status-loja");
-    status.className = "status aberto";
-    status.innerText = "🟢 Aberto agora - pedidos liberados";
+    status.className = "status fechado";
+    status.innerText = "🔴 Fechado agora - pedidos indisponíveis";
 }
 
 atualizarStatusLoja();
