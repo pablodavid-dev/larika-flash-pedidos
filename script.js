@@ -1,7 +1,7 @@
 var quantidades = [0, 0, 0, 0, 0, 0];
 
 var precos = [
-    40,
+    39,
     29,
     0,
     49,
@@ -114,3 +114,4 @@ function atualizarStatusLoja() {
 }
 
 atualizarStatusLoja();
+
