@@ -1,21 +1,17 @@
-var quantidades = [0, 0, 0, 0, 0, 0];
+var quantidades = [0, 0, 0, 0];
 
 var precos = [
-    39,
-    29,
-    0,
-    49,
-    69,
-    89
+    89, // Mega
+    79, // Família
+    59, // Casal
+    29  // Duplo
 ];
 
 var nomesCombos = [
-    "Combo Larika (2 Duplo Cheddar Bacon + 2 Refri 200ml)",
-    "Duplo Cheddar Bacon + Fritas + Refri 200ml",
-    "",
-    "Combo Casal",
-    "Combo Família",
-    "Mega Combo Larika"
+    "Mega Combo Larika (4 Duplo Cheddar Bacon + 4 Fritas + Refri 2L Grátis)",
+    "Combo Família (3 Duplo Cheddar Bacon + 3 Fritas + 3 Refris 200ml)",
+    "Combo Casal (2 Duplo Cheddar Bacon + 2 Fritas + 2 Refris 200ml)",
+    "Duplo Cheddar Bacon + Fritas + Refri 200ml"
 ];
 
 function adicionar(index) {
@@ -61,9 +57,12 @@ function enviarPedido() {
     let mensagem = "PEDIDO - LARIKA FLASH\n\n";
     let temPedido = false;
 
+    let subtotal = 0;
+
     for (let i = 0; i < quantidades.length; i++) {
-        if (quantidades[i] > 0 && nomesCombos[i]) {
+        if (quantidades[i] > 0) {
             mensagem += quantidades[i] + "x " + nomesCombos[i] + "\n";
+            subtotal += quantidades[i] * precos[i];
             temPedido = true;
         }
     }
@@ -71,6 +70,12 @@ function enviarPedido() {
     // 🔴 BLOQUEIA SE NÃO TIVER ITEM
     if (!temPedido) {
         alert("Adicione pelo menos um item ao pedido.");
+        return;
+    }
+
+    // 🔴 BLOQUEIA SE NÃO ATINGIR R$30 (SEM TAXA)
+    if (subtotal < 30) {
+        alert("Pedido mínimo de R$ 30,00 em lanches.");
         return;
     }
 
