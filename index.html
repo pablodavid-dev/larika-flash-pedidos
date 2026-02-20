@@ -30,19 +30,19 @@
 
     <h2>Escolha o seu combo</h2>
 
-  <!-- COMBOS -->
-
-<!-- MEGA COMBO - PRIMEIRO COM DESTAQUE -->
+<!-- MEGA COMBO - PROTAGONISTA -->
 <div class="combo destaque">
 
-    <span class="badge-top">🔥 MAIS VENDIDO</span>
+    <span class="badge-top">🔥 MELHOR CUSTO POR PESSOA</span>
 
     <img src="mega.png" class="combo-img" alt="Mega Combo Larika">
-    <h3>MEGA COMBO LARIKA + REFRI 2L GRÁTIS — R$ 89</h3>
+    <h3>MEGA COMBO LARIKA — R$ 89</h3>
     <p>
         • 4 Duplo Cheddar Bacon<br>
         • 4 Fritas<br>
-        • 1 Refri 2L Grátis
+        • 1 Coca Cola 1,5L Grátis<br><br>
+        
+        🔥 O dobro do casal por apenas +30
     </p>
     <div class="controls">
         <button onclick="remover(0)">-</button>
@@ -86,7 +86,7 @@
 <!-- DUPLO -->
 <div class="combo">
     <img src="duplo.png" class="combo-img" alt="Duplo Cheddar Bacon">
-    <h3>Duplo Cheddar Bacon + Fritas + Refri 200ml — R$ 29</h3>
+    <h3>Duplo Cheddar Bacon + Fritas + Refri 200ml — R$ 35</h3>
     <p>
         • Pão brioche<br>
         • 2 carnes (60g cada)<br>
@@ -104,15 +104,14 @@
     </div>
 </div>
 
-    <!-- RESUMO -->
-   <div class="resumo">
+<!-- RESUMO -->
+<div class="resumo">
 
     <h2>Informações do pedido</h2>
 
 <input type="text" id="rua" placeholder="Nome da rua e número">
 
-
-   <select id="bairro" onchange="calcularTotal()">
+<select id="bairro" onchange="calcularTotal()">
     <option value="">Selecione o bairro</option>
     <option value="4">Rio Vermelho — R$ 4</option>
     <option value="6">Ingleses — R$ 6</option>
@@ -121,13 +120,12 @@
     <option value="10">Vargem Grande — R$ 10</option>
 </select>
 
-
-    <select id="pagamento">
-        <option value="">Forma de pagamento</option>
-        <option value="Pix">Pix</option>
-        <option value="Cartão">Cartão</option>
-        <option value="Dinheiro">Dinheiro</option>
-    </select>
+<select id="pagamento">
+    <option value="">Forma de pagamento</option>
+    <option value="Pix">📲 Pix (pode pagar antes ou na entrega)</option>
+    <option value="Cartão">💳 Cartão na entrega</option>
+    <option value="Dinheiro">💵 Dinheiro na entrega</option>
+</select>
 
 <textarea 
     id="observacao"
@@ -136,16 +134,18 @@
     style="width:100%; padding:14px; border-radius:12px; border:1px solid #e6e6e6; margin-bottom:14px; font-size:14px; resize:none;">
 </textarea>
 
+<h2>Total: R$ <span id="total">0</span></h2>
 
-    <h2>Total: R$ <span id="total">0</span></h2>
+<button class="btn-whatsapp" onclick="enviarPedido()">
+    <span class="wh-circle"></span>
+    Peça agora no WhatsApp
+</button>
 
-    <button class="btn-whatsapp" onclick="enviarPedido()">
-        <span class="wh-circle"></span>
-        Peça agora no WhatsApp
-    </button>
+<p style="font-size:12px; margin-top:10px; color:#666;">
+Pagamento seguro • Pedido confirmado pelo WhatsApp
+</p>
 
 </div>
-
 
 </div>
 
