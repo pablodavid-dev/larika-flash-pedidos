@@ -1,53 +1,26 @@
-var quantidades = [0, 0, 0, 0];
+/* STATUS LOJA - FECHADA */
 
-var precos = [
-    89, // Mega
-    79, // Família
-    59, // Casal
-    35  // Duplo
-];
+let lojaAberta = false; // 🔴 MUDA PRA TRUE QUANDO QUISER ABRIR
 
-var nomesCombos = [
-    "Mega Combo Larika (4 Duplo Cheddar Bacon + 4 Fritas + Refri 2L Grátis)",
-    "Combo Família (3 Duplo Cheddar Bacon + 3 Fritas + 3 Refris 200ml)",
-    "Combo Casal (2 Duplo Cheddar Bacon + 2 Fritas + 2 Refris 200ml)",
-    "Duplo Cheddar Bacon + Fritas + Refri 200ml"
-];
+function atualizarStatusLoja() {
+    const status = document.getElementById("status-loja");
 
-function adicionar(index) {
-    quantidades[index]++;
-    atualizarQuantidade(index);
-}
-
-function remover(index) {
-    if (quantidades[index] > 0) {
-        quantidades[index]--;
-        atualizarQuantidade(index);
+    if (lojaAberta) {
+        status.className = "status aberto";
+        status.innerText = "🟢 Aberto agora - pedidos liberados";
+    } else {
+        status.className = "status fechado";
+        status.innerText = "🔴 Loja fechada no momento";
     }
-}
-
-function atualizarQuantidade(index) {
-    document.getElementById("qtd-" + index).innerText = quantidades[index];
-    calcularTotal();
-}
-
-function calcularTotal() {
-    let total = 0;
-
-    for (let i = 0; i < quantidades.length; i++) {
-        total += quantidades[i] * precos[i];
-    }
-
-    const bairro = document.getElementById("bairro");
-    const taxa = bairro && bairro.value ? Number(bairro.value) : 0;
-
-    total += taxa;
-
-    document.getElementById("total").innerText =
-        total.toFixed(2).replace(".", ",");
 }
 
 function enviarPedido() {
+
+    // 🔴 BLOQUEIA SE LOJA ESTIVER FECHADA
+    if (!lojaAberta) {
+        alert("A loja está fechada no momento. Voltamos em breve!");
+        return;
+    }
 
     const rua = document.getElementById("rua");
     const bairro = document.getElementById("bairro");
@@ -67,13 +40,11 @@ function enviarPedido() {
         }
     }
 
-    // 🔴 BLOQUEIA SE NÃO TIVER ITEM
     if (!temPedido) {
         alert("Adicione pelo menos um item ao pedido.");
         return;
     }
 
-    // 🔴 BLOQUEIA SE NÃO ATINGIR R$30 (SEM TAXA)
     if (subtotal < 30) {
         alert("Pedido mínimo de R$ 30,00 em lanches.");
         return;
@@ -106,13 +77,4 @@ function enviarPedido() {
     );
 }
 
-/* STATUS LOJA - ABERTA */
-
-function atualizarStatusLoja() {
-    const status = document.getElementById("status-loja");
-    status.className = "status aberto";
-    status.innerText = "🟢 Aberto agora - pedidos liberados";
-}
-
 atualizarStatusLoja();
-
