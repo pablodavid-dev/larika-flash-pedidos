@@ -1,6 +1,73 @@
-/* STATUS LOJA - FECHADA */
+/* ============================
+   CONFIGURAÇÃO INICIAL
+============================ */
 
-let lojaAberta = false; // 🔴 MUDA PRA TRUE QUANDO QUISER ABRIR
+let lojaAberta = true; // 🔴 MUDA PRA false SE QUISER FECHAR
+
+var quantidades = [0, 0, 0, 0];
+
+var precos = [
+    89, // Mega
+    79, // Família
+    59, // Casal
+    35  // Duplo
+];
+
+var nomesCombos = [
+    "MEGA COMBO LARIKA",
+    "Combo Família",
+    "Combo Casal",
+    "Duplo Cheddar Bacon"
+];
+
+
+/* ============================
+   CONTROLE DE QUANTIDADE
+============================ */
+
+function adicionar(index) {
+    quantidades[index]++;
+    document.getElementById("qtd-" + index).innerText = quantidades[index];
+    calcularTotal();
+}
+
+function remover(index) {
+    if (quantidades[index] > 0) {
+        quantidades[index]--;
+        document.getElementById("qtd-" + index).innerText = quantidades[index];
+        calcularTotal();
+    }
+}
+
+
+/* ============================
+   CÁLCULO TOTAL
+============================ */
+
+function calcularTotal() {
+
+    let subtotal = 0;
+
+    for (let i = 0; i < quantidades.length; i++) {
+        subtotal += quantidades[i] * precos[i];
+    }
+
+    let bairro = document.getElementById("bairro");
+    let taxaEntrega = 0;
+
+    if (bairro && bairro.value) {
+        taxaEntrega = parseFloat(bairro.value);
+    }
+
+    let total = subtotal + taxaEntrega;
+
+    document.getElementById("total").innerText = total.toFixed(2);
+}
+
+
+/* ============================
+   STATUS DA LOJA
+============================ */
 
 function atualizarStatusLoja() {
     const status = document.getElementById("status-loja");
@@ -14,9 +81,18 @@ function atualizarStatusLoja() {
     }
 }
 
+function toggleLoja() {
+    lojaAberta = !lojaAberta;
+    atualizarStatusLoja();
+}
+
+
+/* ============================
+   ENVIAR PEDIDO
+============================ */
+
 function enviarPedido() {
 
-    // 🔴 BLOQUEIA SE LOJA ESTIVER FECHADA
     if (!lojaAberta) {
         alert("A loja está fechada no momento. Voltamos em breve!");
         return;
@@ -27,9 +103,8 @@ function enviarPedido() {
     const pagamento = document.getElementById("pagamento");
     const observacao = document.getElementById("observacao");
 
-    let mensagem = "PEDIDO - LARIKA FLASH\n\n";
+    let mensagem = "🍔 PEDIDO - LARIKA FLASH\n\n";
     let temPedido = false;
-
     let subtotal = 0;
 
     for (let i = 0; i < quantidades.length; i++) {
@@ -50,26 +125,36 @@ function enviarPedido() {
         return;
     }
 
-    mensagem += "\nINFORMAÇÕES\n";
+    mensagem += "\n📍 INFORMAÇÕES\n";
 
-    if (rua && rua.value.trim()) {
-        mensagem += "Endereço: " + rua.value + "\n";
+    if (rua.value.trim() === "") {
+        alert("Digite o endereço.");
+        return;
     }
 
-    if (bairro && bairro.value) {
-        mensagem += "Bairro: " + bairro.options[bairro.selectedIndex].text + "\n";
+    mensagem += "Endereço: " + rua.value + "\n";
+
+    if (bairro.value === "") {
+        alert("Selecione o bairro.");
+        return;
     }
 
-    if (pagamento && pagamento.value) {
-        mensagem += "Pagamento: " + pagamento.value + "\n";
+    mensagem += "Bairro: " + bairro.options[bairro.selectedIndex].text + "\n";
+
+    if (pagamento.value === "") {
+        alert("Selecione a forma de pagamento.");
+        return;
     }
 
-    if (observacao && observacao.value.trim()) {
-        mensagem += "\nOBSERVAÇÃO\n";
+    mensagem += "Pagamento: " + pagamento.value + "\n";
+
+    if (observacao.value.trim()) {
+        mensagem += "\n📝 OBSERVAÇÃO\n";
         mensagem += observacao.value + "\n";
     }
 
-    mensagem += "\nTOTAL: R$ " + document.getElementById("total").innerText;
+    let totalFinal = document.getElementById("total").innerText;
+    mensagem += "\n💰 TOTAL: R$ " + totalFinal;
 
     window.open(
         "https://wa.me/554888509014?text=" + encodeURIComponent(mensagem),
@@ -77,4 +162,10 @@ function enviarPedido() {
     );
 }
 
+
+/* ============================
+   INICIALIZAÇÃO
+============================ */
+
 atualizarStatusLoja();
+calcularTotal();
