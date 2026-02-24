@@ -10,7 +10,7 @@ var precos = [
     89, // Mega
     79, // Família
     59, // Casal
-    35  // Duplo
+    32  // Duplo
 ];
 
 var nomesCombos = [
@@ -169,3 +169,4 @@ function enviarPedido() {
 
 atualizarStatusLoja();
 calcularTotal();
+
