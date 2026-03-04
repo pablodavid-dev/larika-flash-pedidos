@@ -8,7 +8,7 @@ var quantidades = [0, 0, 0, 0];
 
 var precos = [
     89, // Mega
-    79, // Família
+    75, // Família
     59, // Casal
     32  // Duplo
 ];
@@ -169,4 +169,5 @@ function enviarPedido() {
 
 atualizarStatusLoja();
 calcularTotal();
+
 
