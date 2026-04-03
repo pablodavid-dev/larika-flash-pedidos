@@ -2,7 +2,7 @@
    CONFIGURAÇÃO INICIAL
 ============================ */
 
-let lojaAberta = true; // 🔴 MUDA PRA false SE QUISER FECHAR
+let lojaAberta = false; // 🔴 LOJA FECHADA
 
 var quantidades = [0, 0, 0, 0];
 
@@ -45,7 +45,6 @@ function remover(index) {
 ============================ */
 
 function calcularTotal() {
-
     let subtotal = 0;
 
     for (let i = 0; i < quantidades.length; i++) {
@@ -92,7 +91,6 @@ function toggleLoja() {
 ============================ */
 
 function enviarPedido() {
-
     if (!lojaAberta) {
         alert("A loja está fechada no momento. Voltamos em breve!");
         return;
@@ -169,5 +167,3 @@ function enviarPedido() {
 
 atualizarStatusLoja();
 calcularTotal();
-
-
