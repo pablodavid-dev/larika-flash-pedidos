@@ -30,136 +30,135 @@
 
     <h2>Escolha o seu combo</h2>
 
-<!-- MEGA COMBO - PROTAGONISTA -->
-<div class="combo destaque">
+    <!-- MEGA COMBO - PROTAGONISTA -->
+    <div class="combo destaque">
 
-    <span class="badge-top">🔥 MELHOR CUSTO POR PESSOA</span>
+        <span class="badge-top">🔥 MELHOR CUSTO POR PESSOA</span>
 
-    <img src="mega.png" class="combo-img" alt="Mega Combo Larika">
-    <h3>MEGA COMBO LARIKA — R$ 89</h3>
-    <p>
-        • 4 Duplo Cheddar Bacon<br>
-        • 4 Fritas<br>
-        • 1 Coca Cola 1,5L Grátis<br><br>
-    </p>
-    <div class="controls">
-        <button onclick="remover(0)">-</button>
-        <span id="qtd-0">0</span>
-        <button onclick="adicionar(0)">+</button>
+        <img src="mega.png" class="combo-img" alt="Mega Combo Larika">
+        <h3>MEGA COMBO LARIKA — R$ 85</h3>
+        <p>
+            • 4 Turbo Cheddar Bacon<br>
+            • 4 Batatinha Chips<br>
+            • 1 Coca Cola 1,5L<br><br>
+        </p>
+        <div class="controls">
+            <button onclick="remover(0)">-</button>
+            <span id="qtd-0">0</span>
+            <button onclick="adicionar(0)">+</button>
+        </div>
     </div>
-</div>
 
-<!-- FAMÍLIA -->
-<div class="combo">
-    <img src="familia.png" class="combo-img" alt="Combo Família">
-    <h3>Combo Família — R$ 75</h3>
-    <p>
-        • 3 Duplo Cheddar Bacon<br>
-        • 3 Fritas<br>
-        • 3 Refris 200ml Grátis
-    </p>
-    <div class="controls">
-        <button onclick="remover(1)">-</button>
-        <span id="qtd-1">0</span>
-        <button onclick="adicionar(1)">+</button>
+    <!-- FAMÍLIA -->
+    <div class="combo">
+        <img src="familia.png" class="combo-img" alt="Combo Família">
+        <h3>Combo Família — R$ 69</h3>
+        <p>
+            • 3 Turbo Cheddar Bacon<br>
+            • 3 Batatinha Chips<br>
+            • 3 Coca 200ml
+        </p>
+        <div class="controls">
+            <button onclick="remover(1)">-</button>
+            <span id="qtd-1">0</span>
+            <button onclick="adicionar(1)">+</button>
+        </div>
     </div>
-</div>
 
-<!-- CASAL -->
-<div class="combo">
-    <img src="casal.png" class="combo-img" alt="Combo Casal">
-    <h3>Combo Casal — R$ 59</h3>
-    <p>
-        • 2 Duplo Cheddar Bacon<br>
-        • 2 Fritas<br>
-        • 2 Refris 200ml Grátis
-    </p>
-    <div class="controls">
-        <button onclick="remover(2)">-</button>
-        <span id="qtd-2">0</span>
-        <button onclick="adicionar(2)">+</button>
+    <!-- CASAL -->
+    <div class="combo">
+        <img src="casal.png" class="combo-img" alt="Combo Casal">
+        <h3>Combo Casal — R$ 49</h3>
+        <p>
+            • 2 Turbo Cheddar Bacon<br>
+            • 2 Batatinha Chips<br>
+            • 2 Coca 200ml
+        </p>
+        <div class="controls">
+            <button onclick="remover(2)">-</button>
+            <span id="qtd-2">0</span>
+            <button onclick="adicionar(2)">+</button>
+        </div>
     </div>
-</div>
 
-<!-- DUPLO -->
-<div class="combo">
-    <img src="duplo.png" class="combo-img" alt="Duplo Cheddar Bacon">
-    <h3>Duplo Cheddar Bacon + Fritas + Refri 200ml — R$ 32</h3>
-    <p>
-        • Pão brioche<br>
-        • 1 carnes (110g)<br>
-        • Bacon<br>
-        • Queijo Cheddar<br>
-        • Queijo Mussarela<br>
-        • Molho cheddar<br>
-        • Molho Especial<br>
-        • Barbecue<br>
-        • Alface<br>
-        • Tomate<br>
-        • Cebola roxa<br>
-    </p>
-    <div class="controls">
-        <button onclick="remover(3)">-</button>
-        <span id="qtd-3">0</span>
-        <button onclick="adicionar(3)">+</button>
+    <!-- BURGUER -->
+    <div class="combo">
+        <img src="duplo.png" class="combo-img" alt="Turbo Cheddar Bacon">
+        <h3>Turbo Cheddar Bacon</h3>
+        <p>
+            • Pão brioche<br>
+            • 1 carnes (110g)<br>
+            • Bacon<br>
+            • Queijo Cheddar<br>
+            • Molho cheddar<br>
+            • Molho Especial<br>
+            • Barbecue<br>
+            • Alface<br>
+            • Tomate<br>
+            • Cebola roxa<br>
+        </p>
+        <div class="controls">
+            <button onclick="remover(3)">-</button>
+            <span id="qtd-3">0</span>
+            <button onclick="adicionar(3)">+</button>
+        </div>
     </div>
-</div>
 
-<!-- RESUMO -->
-<div class="resumo">
+    <!-- RESUMO -->
+    <div class="resumo">
 
-    <h2>Informações do pedido</h2>
+        <h2>Informações do pedido</h2>
 
-<input type="text" id="rua" placeholder="Nome da rua e número">
+        <input type="text" id="rua" placeholder="Nome da rua e número">
 
-<select id="bairro" onchange="calcularTotal()">
-    <option value="">Selecione o bairro</option>
-    <option value="1">Rio Vermelho — R$ 1</option>
-    <option value="6">Ingleses — R$ 6</option>
-    <option value="8">Santinho — R$ 8</option>
-    <option value="8">Gaivotas — R$ 8</option>
-</select>
+        <select id="bairro" onchange="calcularTotal()">
+            <option value="">Selecione o bairro</option>
+            <option value="1">Rio Vermelho — R$ 1</option>
+            <option value="6">Ingleses — R$ 6</option>
+            <option value="8">Santinho — R$ 8</option>
+            <option value="8">Gaivotas — R$ 8</option>
+        </select>
 
-<select id="pagamento">
-    <option value="">Forma de pagamento</option>
-    <option value="Pix">📲 Pix (pode pagar antes ou na entrega)</option>
-    <option value="Cartão">💳 Cartão na entrega</option>
-    <option value="Dinheiro">💵 Dinheiro na entrega</option>
-</select>
+        <select id="pagamento">
+            <option value="">Forma de pagamento</option>
+            <option value="Pix">📲 Pix (pode pagar antes ou na entrega)</option>
+            <option value="Cartão">💳 Cartão na entrega</option>
+            <option value="Dinheiro">💵 Dinheiro na entrega</option>
+        </select>
 
-<textarea 
-    id="observacao"
-    rows="3"
-    placeholder="Observações: tirar cebola, carne bem passada, troco para 100..."
-    style="width:100%; padding:14px; border-radius:12px; border:1px solid #e6e6e6; margin-bottom:14px; font-size:14px; resize:none;">
-</textarea>
+        <textarea 
+            id="observacao"
+            rows="3"
+            placeholder="Observações: tirar cebola, carne bem passada, troco para 100..."
+            style="width:100%; padding:14px; border-radius:12px; border:1px solid #e6e6e6; margin-bottom:14px; font-size:14px; resize:none;">
+        </textarea>
 
-<!-- BLOCO DE CONFIANÇA INSERIDO -->
-<div style="
-    background:#f5fff7;
-    border:1px solid #cceedd;
-    padding:12px;
-    border-radius:12px;
-    margin-bottom:12px;
-    font-size:14px;
-    text-align:center;
-">
-    🔒 <strong>Você paga somente na entrega.</strong><br>
-    Pix, cartão ou dinheiro — sem cobrança antecipada.
-</div>
+        <!-- BLOCO DE CONFIANÇA INSERIDO -->
+        <div style="
+            background:#f5fff7;
+            border:1px solid #cceedd;
+            padding:12px;
+            border-radius:12px;
+            margin-bottom:12px;
+            font-size:14px;
+            text-align:center;
+        ">
+            🔒 <strong>Você paga somente na entrega.</strong><br>
+            Pix, cartão ou dinheiro — sem cobrança antecipada.
+        </div>
 
-<h2>Total: R$ <span id="total">0</span></h2>
+        <h2>Total: R$ <span id="total">0</span></h2>
 
-<button class="btn-whatsapp" onclick="enviarPedido()">
-    <span class="wh-circle"></span>
-    Peça agora no WhatsApp
-</button>
+        <button class="btn-whatsapp" onclick="enviarPedido()">
+            <span class="wh-circle"></span>
+            Peça agora no WhatsApp
+        </button>
 
-<p style="font-size:12px; margin-top:10px; color:#666;">
-Pagamento seguro • Pedido confirmado pelo WhatsApp
-</p>
+        <p style="font-size:12px; margin-top:10px; color:#666;">
+            Pagamento seguro • Pedido confirmado pelo WhatsApp
+        </p>
 
-</div>
+    </div>
 
 </div>
 
@@ -167,5 +166,3 @@ Pagamento seguro • Pedido confirmado pelo WhatsApp
 
 </body>
 </html>
-
-
