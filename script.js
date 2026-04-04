@@ -2,22 +2,22 @@
    CONFIGURAÇÃO INICIAL
 ============================ */
 
-let lojaAberta = false; // 🔴 LOJA FECHADA
+let lojaAberta = true; // 🟢 LOJA ABERTA
 
 var quantidades = [0, 0, 0, 0];
 
 var precos = [
-    89, // Mega
-    75, // Família
-    59, // Casal
-    32  // Duplo
+    85, // Mega
+    69, // Família
+    49, // Casal
+    0   // Turbo Cheddar Bacon (apenas vitrine)
 ];
 
 var nomesCombos = [
     "MEGA COMBO LARIKA",
     "Combo Família",
     "Combo Casal",
-    "Duplo Cheddar Bacon"
+    "Turbo Cheddar Bacon"
 ];
 
 
@@ -26,12 +26,16 @@ var nomesCombos = [
 ============================ */
 
 function adicionar(index) {
+    if (index === 3) return; // 🚫 bloqueia o burger vitrine
+
     quantidades[index]++;
     document.getElementById("qtd-" + index).innerText = quantidades[index];
     calcularTotal();
 }
 
 function remover(index) {
+    if (index === 3) return; // 🚫 bloqueia o burger vitrine
+
     if (quantidades[index] > 0) {
         quantidades[index]--;
         document.getElementById("qtd-" + index).innerText = quantidades[index];
@@ -106,7 +110,7 @@ function enviarPedido() {
     let subtotal = 0;
 
     for (let i = 0; i < quantidades.length; i++) {
-        if (quantidades[i] > 0) {
+        if (quantidades[i] > 0 && i !== 3) { // 🚫 ignora o burger vitrine
             mensagem += quantidades[i] + "x " + nomesCombos[i] + "\n";
             subtotal += quantidades[i] * precos[i];
             temPedido = true;
