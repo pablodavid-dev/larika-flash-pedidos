@@ -8,7 +8,7 @@ var quantidades = [0, 0, 0, 0];
 
 var precos = [
     85, // Mega
-    75, // Família
+    69, // Família
     55, // Casal
     0   // Turbo Cheddar Bacon (apenas vitrine)
 ];
