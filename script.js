@@ -26,7 +26,7 @@ var nomesCombos = [
 ============================ */
 
 function adicionar(index) {
-    if (index === 3) return; // 🚫 bloqueia o burger vitrine
+    if (index === 3) return;
 
     quantidades[index]++;
     document.getElementById("qtd-" + index).innerText = quantidades[index];
@@ -34,7 +34,7 @@ function adicionar(index) {
 }
 
 function remover(index) {
-    if (index === 3) return; // 🚫 bloqueia o burger vitrine
+    if (index === 3) return;
 
     if (quantidades[index] > 0) {
         quantidades[index]--;
@@ -110,7 +110,7 @@ function enviarPedido() {
     let subtotal = 0;
 
     for (let i = 0; i < quantidades.length; i++) {
-        if (quantidades[i] > 0 && i !== 3) { // 🚫 ignora o burger vitrine
+        if (quantidades[i] > 0 && i !== 3) {
             mensagem += quantidades[i] + "x " + nomesCombos[i] + "\n";
             subtotal += quantidades[i] * precos[i];
             temPedido = true;
