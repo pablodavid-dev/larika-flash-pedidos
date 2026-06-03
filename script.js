@@ -7,7 +7,7 @@ let lojaAberta = true; // 🟢 LOJA ABERTA
 var quantidades = [0, 0, 0, 0];
 
 var precos = [
-    99, // Mega
+    89, // Mega
     79, // Família
     59, // Casal
     0   // Turbo Cheddar Bacon (apenas vitrine)
