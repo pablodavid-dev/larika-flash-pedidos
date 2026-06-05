@@ -4,20 +4,22 @@
 
 let lojaAberta = true; // 🟢 LOJA ABERTA
 
-var quantidades = [0, 0, 0, 0];
+var quantidades = [0, 0, 0, 0, 0];
 
 var precos = [
     89, // Mega
     79, // Família
     59, // Casal
-    0   // Turbo Cheddar Bacon (apenas vitrine)
+    0,  // Turbo Cheddar Bacon (apenas vitrine)
+    59  // Combo Larika Xis
 ];
 
 var nomesCombos = [
     "MEGA COMBO LARIKA",
     "Combo Família",
     "Combo Casal",
-    "Turbo Cheddar Bacon"
+    "Turbo Cheddar Bacon",
+    "Combo Larika Xis"
 ];
 
 
