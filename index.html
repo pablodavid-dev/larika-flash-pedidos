@@ -30,7 +30,7 @@
 
     <h2>Escolha o seu combo</h2>
 
-    <!-- MEGA COMBO - PROTAGONISTA -->
+    <!-- MEGA COMBO -->
     <div class="combo destaque">
 
         <span class="badge-top">🔥 MELHOR CUSTO POR PESSOA</span>
@@ -42,7 +42,6 @@
             • 4 Batatas Fritas <br>
             • 1 Coca Cola 1,5L<br><br>
             • 1 Chocolate Grátis<br><br>
-           
         </p>
         <div class="controls">
             <button onclick="remover(0)">-</button>
@@ -97,12 +96,28 @@
             • Barbecue<br>
             • Alface<br>
             • Tomate<br>
-            • Cebola roxa<br>
+            • Cebola roxa
         </p>
         <div class="controls">
             <button onclick="remover(3)">-</button>
             <span id="qtd-3">0</span>
             <button onclick="adicionar(3)">+</button>
+        </div>
+    </div>
+
+    <!-- COMBO LARIKA XIS -->
+    <div class="combo">
+        <img src="comboxis.png" class="combo-img" alt="COMBO LARIKA XIS">
+        <h3>Combo Larika Xis — R$ 59</h3>
+        <p>
+            • 2 Xis Salada Aro 17<br>
+            • 2 Coca-Cola 200ml<br>
+            • 2 Maionese Caseira<br>
+        </p>
+        <div class="controls">
+            <button onclick="remover(4)">-</button>
+            <span id="qtd-4">0</span>
+            <button onclick="adicionar(4)">+</button>
         </div>
     </div>
 
@@ -113,11 +128,11 @@
 
         <input type="text" id="rua" placeholder="Nome da rua e número">
 
-<select id="bairro" onchange="calcularTotal()">
-    <option value="">Selecione o bairro</option>
-    <option value="1">Rio Vermelho — R$ 1</option>
-    <option value="1">Ingleses — R$ 1</option>
-</select>
+        <select id="bairro" onchange="calcularTotal()">
+            <option value="">Selecione o bairro</option>
+            <option value="1">Rio Vermelho — R$ 1</option>
+            <option value="1">Ingleses — R$ 1</option>
+        </select>
 
         <select id="pagamento">
             <option value="">Forma de pagamento</option>
@@ -126,14 +141,13 @@
             <option value="Dinheiro">💵 Dinheiro na entrega</option>
         </select>
 
-        <textarea 
+        <textarea
             id="observacao"
             rows="3"
             placeholder="Observações: tirar cebola, carne bem passada, troco para 100..."
             style="width:100%; padding:14px; border-radius:12px; border:1px solid #e6e6e6; margin-bottom:14px; font-size:14px; resize:none;">
         </textarea>
 
-        <!-- BLOCO DE CONFIANÇA INSERIDO -->
         <div style="
             background:#f5fff7;
             border:1px solid #cceedd;
