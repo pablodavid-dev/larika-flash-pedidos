@@ -1,175 +1,146 @@
-/* ============================
-   CONFIGURAÇÃO INICIAL
-============================ */
-
-let lojaAberta = true; // 🟢 LOJA ABERTA
-
-var quantidades = [0, 0, 0, 0, 0];
-
-var precos = [
-    89, // Mega
-    79, // Família
-    59, // Casal
-    0,  // Turbo Cheddar Bacon (apenas vitrine)
-    59  // Combo Larika Xis
+const produtos = [
+    { id: 0, nome: "Super Combo Larikão", preco: 149, qtd: 0 },
+    { id: 1, nome: "Mega Combo", preco: 89, qtd: 0 },
+    { id: 2, nome: "Combo Família", preco: 79, qtd: 0 },
+    { id: 3, nome: "Combo Casal", preco: 59, qtd: 0 },
+    { id: 4, nome: "Solteiro", preco: 39, qtd: 0 },
+    { id: 5, nome: "Combo 2 Xis Salada Aro 17", preco: 69, qtd: 0 },
+    { id: 6, nome: "600g Fritas com Cheddar e Bacon", preco: 37, qtd: 0 },
+    { id: 7, nome: "Pepsi 2L", preco: 18, qtd: 0 },
+    { id: 8, nome: "Coca-Cola 1,5L", preco: 18, qtd: 0 },
+    { id: 9, nome: "Caixa de Bis", preco: 12, qtd: 0 }
 ];
 
-var nomesCombos = [
-    "MEGA COMBO LARIKA",
-    "Combo Família",
-    "Combo Casal",
-    "Turbo Cheddar Bacon",
-    "Combo Larika Xis"
-];
+const pedidoMinimo = 39;
+let lojaAberta = true;
 
-
-/* ============================
-   CONTROLE DE QUANTIDADE
-============================ */
-
-function adicionar(index) {
-    if (index === 3) return;
-
-    quantidades[index]++;
-    document.getElementById("qtd-" + index).innerText = quantidades[index];
-    calcularTotal();
+function formatar(valor) {
+    return valor.toFixed(2).replace(".", ",");
 }
 
-function remover(index) {
-    if (index === 3) return;
+function adicionar(id) {
+    const produto = produtos.find(p => p.id === id);
 
-    if (quantidades[index] > 0) {
-        quantidades[index]--;
-        document.getElementById("qtd-" + index).innerText = quantidades[index];
+    if (produto) {
+        produto.qtd++;
         calcularTotal();
     }
 }
 
+function remover(id) {
+    const produto = produtos.find(p => p.id === id);
 
-/* ============================
-   CÁLCULO TOTAL
-============================ */
+    if (produto && produto.qtd > 0) {
+        produto.qtd--;
+        calcularTotal();
+    }
+}
 
 function calcularTotal() {
     let subtotal = 0;
 
-    for (let i = 0; i < quantidades.length; i++) {
-        subtotal += quantidades[i] * precos[i];
-    }
+    produtos.forEach(produto => {
+        const qtdElemento = document.getElementById(`qtd-${produto.id}`);
 
-    let bairro = document.getElementById("bairro");
-    let taxaEntrega = 0;
+        if (qtdElemento) {
+            qtdElemento.innerText = produto.qtd;
+        }
 
-    if (bairro && bairro.value) {
-        taxaEntrega = parseFloat(bairro.value);
-    }
+        subtotal += produto.preco * produto.qtd;
+    });
 
-    let total = subtotal + taxaEntrega;
+    const bairro = document.getElementById("bairro");
+    const taxaEntrega = bairro && bairro.value ? Number(bairro.value) : 0;
+    const total = subtotal + taxaEntrega;
 
-    document.getElementById("total").innerText = total.toFixed(2);
-}
+    const totalElemento = document.getElementById("total");
 
-
-/* ============================
-   STATUS DA LOJA
-============================ */
-
-function atualizarStatusLoja() {
-    const status = document.getElementById("status-loja");
-
-    if (lojaAberta) {
-        status.className = "status aberto";
-        status.innerText = "🟢 Aberto agora - pedidos liberados";
-    } else {
-        status.className = "status fechado";
-        status.innerText = "🔴 Loja fechada no momento";
+    if (totalElemento) {
+        totalElemento.innerText = formatar(total);
     }
 }
-
-function toggleLoja() {
-    lojaAberta = !lojaAberta;
-    atualizarStatusLoja();
-}
-
-
-/* ============================
-   ENVIAR PEDIDO
-============================ */
 
 function enviarPedido() {
-    if (!lojaAberta) {
-        alert("A loja está fechada no momento. Voltamos em breve!");
-        return;
-    }
-
-    const rua = document.getElementById("rua");
-    const bairro = document.getElementById("bairro");
-    const pagamento = document.getElementById("pagamento");
-    const observacao = document.getElementById("observacao");
-
-    let mensagem = "🍔 PEDIDO - LARIKA FLASH\n\n";
-    let temPedido = false;
     let subtotal = 0;
+    let temItem = false;
 
-    for (let i = 0; i < quantidades.length; i++) {
-        if (quantidades[i] > 0 && i !== 3) {
-            mensagem += quantidades[i] + "x " + nomesCombos[i] + "\n";
-            subtotal += quantidades[i] * precos[i];
-            temPedido = true;
+    let mensagem = "Olá, quero fazer um pedido na Larika Flash:%0A%0A";
+
+    produtos.forEach(produto => {
+        if (produto.qtd > 0) {
+            temItem = true;
+            const valorItem = produto.preco * produto.qtd;
+            subtotal += valorItem;
+            mensagem += `${produto.qtd}x ${produto.nome} - R$ ${formatar(valorItem)}%0A`;
         }
-    }
+    });
 
-    if (!temPedido) {
-        alert("Adicione pelo menos um item ao pedido.");
+    if (!temItem) {
+        alert("Escolha pelo menos um item antes de finalizar.");
         return;
     }
 
-    if (subtotal < 30) {
-        alert("Pedido mínimo de R$ 30,00 em lanches.");
+    if (subtotal < pedidoMinimo) {
+        alert(`Pedido mínimo de R$ ${formatar(pedidoMinimo)}.`);
         return;
     }
 
-    mensagem += "\n📍 INFORMAÇÕES\n";
+    const rua = document.getElementById("rua").value.trim();
+    const bairroSelect = document.getElementById("bairro");
+    const pagamento = document.getElementById("pagamento").value;
+    const observacao = document.getElementById("observacao").value.trim();
 
-    if (rua.value.trim() === "") {
-        alert("Digite o endereço.");
+    if (!rua) {
+        alert("Informe o endereço.");
         return;
     }
 
-    mensagem += "Endereço: " + rua.value + "\n";
-
-    if (bairro.value === "") {
+    if (!bairroSelect.value) {
         alert("Selecione o bairro.");
         return;
     }
 
-    mensagem += "Bairro: " + bairro.options[bairro.selectedIndex].text + "\n";
-
-    if (pagamento.value === "") {
+    if (!pagamento) {
         alert("Selecione a forma de pagamento.");
         return;
     }
 
-    mensagem += "Pagamento: " + pagamento.value + "\n";
+    const bairroTexto = bairroSelect.options[bairroSelect.selectedIndex].text;
+    const taxaEntrega = Number(bairroSelect.value);
+    const total = subtotal + taxaEntrega;
 
-    if (observacao.value.trim()) {
-        mensagem += "\n📝 OBSERVAÇÃO\n";
-        mensagem += observacao.value + "\n";
+    mensagem += `%0ASubtotal: R$ ${formatar(subtotal)}`;
+    mensagem += `%0AEntrega: R$ ${formatar(taxaEntrega)}`;
+    mensagem += `%0ATotal: R$ ${formatar(total)}`;
+
+    mensagem += `%0A%0AEndereço: ${rua}`;
+    mensagem += `%0ABairro: ${bairroTexto}`;
+    mensagem += `%0AForma de pagamento: ${pagamento}`;
+
+    if (observacao) {
+        mensagem += `%0AObservação: ${observacao}`;
     }
 
-    let totalFinal = document.getElementById("total").innerText;
-    mensagem += "\n💰 TOTAL: R$ " + totalFinal;
+    const telefone = "5548999999999";
+    const link = `https://wa.me/${telefone}?text=${mensagem}`;
 
-    window.open(
-        "https://wa.me/554888509014?text=" + encodeURIComponent(mensagem),
-        "_blank"
-    );
+    window.open(link, "_blank");
 }
 
+function toggleLoja() {
+    lojaAberta = !lojaAberta;
 
-/* ============================
-   INICIALIZAÇÃO
-============================ */
+    const status = document.getElementById("status-loja");
 
-atualizarStatusLoja();
+    if (lojaAberta) {
+        status.innerText = "🟢 Aberto • faça seu pedido";
+        status.classList.remove("fechado");
+        status.classList.add("aberto");
+    } else {
+        status.innerText = "🔴 Fechado • abre às 18h";
+        status.classList.remove("aberto");
+        status.classList.add("fechado");
+    }
+}
+
 calcularTotal();
