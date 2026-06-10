@@ -10,7 +10,7 @@ var precos = [
     149, // Super Combo Larikão
     99,  // Mega Combo
     79,  // Família
-    59,  // Casal
+    49,  // Casal
     39,  // Solteiro
     69,  // Combo 2 Xis Salada
     40,  // Fritas Cheddar Bacon
