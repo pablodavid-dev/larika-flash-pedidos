@@ -13,7 +13,7 @@ var precos = [
     49,  // Casal
     39,  // Solteiro
     69,  // Combo 2 Xis Salada
-    40,  // Fritas Cheddar Bacon
+    37,  // Fritas Cheddar Bacon
     18,  // Pepsi 2L
     18,  // Coca-Cola 1,5L
     12   // Caixa de Bis
