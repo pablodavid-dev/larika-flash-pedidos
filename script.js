@@ -7,9 +7,9 @@ let lojaAberta = true;
 var quantidades = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
 var precos = [
-    149, // Super Combo Larikão
-    99,  // Mega Combo
-    79,  // Família
+    139, // Super Combo Larikão
+    89,  // Mega Combo
+    75,  // Família
     49,  // Casal
     39,  // Solteiro
     69,  // Combo 2 Xis Salada
