@@ -16,7 +16,7 @@ var precos = [
     37,  // Fritas Cheddar Bacon
     18,  // Pepsi 2L
     18,  // Coca-Cola 1,5L
-    12   // Caixa de Bis
+    14   // Caixa de Bis
 ];
 
 var nomesCombos = [
