@@ -2,7 +2,7 @@
    CONFIGURAÇÃO INICIAL
 ============================ */
 
-let lojaAberta = false;
+let lojaAberta = true;
 
 var quantidades = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
