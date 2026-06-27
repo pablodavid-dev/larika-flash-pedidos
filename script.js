@@ -7,16 +7,16 @@ let lojaAberta = false;
 var quantidades = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
 var precos = [
-    139, // Super Combo Larikão
-    89,  // Mega Combo
-    75,  // Família
-    49,  // Casal
-    39,  // Solteiro
-    69,  // Combo 2 Xis Salada
-    37,  // Fritas Cheddar Bacon
-    18,  // Pepsi 2L
-    18,  // Coca-Cola 1,5L
-    14   // Caixa de Bis
+    139,
+    89,
+    75,
+    49,
+    39,
+    69,
+    37,
+    18,
+    18,
+    14
 ];
 
 var nomesCombos = [
@@ -31,6 +31,30 @@ var nomesCombos = [
     "Coca-Cola 1,5L",
     "Caixa de Bis"
 ];
+
+
+/* ============================
+   HORÁRIO DE FUNCIONAMENTO
+   TERÇA A SEXTA
+   20:00 ÀS 00:00
+   HORÁRIO DE BRASÍLIA
+============================ */
+
+function lojaEstaAbertaAgora() {
+    const agoraBrasilia = new Date(
+        new Date().toLocaleString("en-US", {
+            timeZone: "America/Sao_Paulo"
+        })
+    );
+
+    const dia = agoraBrasilia.getDay();
+    const hora = agoraBrasilia.getHours();
+
+    const ehTercaASexta = dia >= 2 && dia <= 5;
+    const dentroDoHorario = hora >= 20 && hora < 24;
+
+    return ehTercaASexta && dentroDoHorario;
+}
 
 
 /* ============================
@@ -91,6 +115,8 @@ function calcularTotal() {
 
 function atualizarStatusLoja() {
 
+    lojaAberta = lojaEstaAbertaAgora();
+
     const status = document.getElementById("status-loja");
 
     if (lojaAberta) {
@@ -100,7 +126,7 @@ function atualizarStatusLoja() {
     } else {
         status.className = "status fechado";
         status.innerText =
-            "🔴 Loja fechada no momento";
+            "🔴 Loja fechada • abre terça a sexta das 20h às 00h";
     }
 }
 
@@ -116,8 +142,10 @@ function toggleLoja() {
 
 function enviarPedido() {
 
+    atualizarStatusLoja();
+
     if (!lojaAberta) {
-        alert("A loja está fechada no momento. Voltamos em breve!");
+        alert("A loja está fechada no momento. Funcionamos de terça a sexta, das 20h às 00h.");
         return;
     }
 
@@ -208,7 +236,6 @@ function enviarPedido() {
         "\n💰 TOTAL: R$ " +
         totalFinal;
 
-    /* WHATSAPP OFICIAL */
     window.open(
         "https://wa.me/5548988509014?text=" +
         encodeURIComponent(mensagem),
@@ -223,3 +250,5 @@ function enviarPedido() {
 
 atualizarStatusLoja();
 calcularTotal();
+
+setInterval(atualizarStatusLoja, 60000);
