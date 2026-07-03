@@ -73,21 +73,20 @@
         </div>
     </div>
 
- 
-  <div class="combo">
-    <img src="casal.png" class="combo-img" alt="Combo Casal">
-    <h3>Combo Casal — R$ 59</h3>
-    <p>
-        • 2 Turbo Cheddar Bacon<br>
-        • 2 Batatas Fritas<br>
-        • 2 Coca 200ml
-    </p>
-    <div class="controls">
-        <button onclick="remover(3)">-</button>
-        <span id="qtd-3">0</span>
-        <button onclick="adicionar(3)">+</button>
+    <div class="combo">
+        <img src="casal.png" class="combo-img" alt="Combo Casal">
+        <h3>Combo Casal — R$ 59</h3>
+        <p>
+            • 2 Turbo Cheddar Bacon<br>
+            • 2 Batatas Fritas<br>
+            • 2 Coca 200ml
+        </p>
+        <div class="controls">
+            <button onclick="remover(3)">-</button>
+            <span id="qtd-3">0</span>
+            <button onclick="adicionar(3)">+</button>
+        </div>
     </div>
-</div>
 
     <div class="combo">
         <img src="solteiro.png" class="combo-img" alt="Solteiro">
@@ -164,26 +163,26 @@
     <div class="resumo">
         <h2>Informações do pedido</h2>
 
-        <input type="text" id="rua" placeholder="Nome da rua e número">
+        <div style="display:flex; gap:8px; margin-bottom:14px;">
+            <input type="text" id="rua" placeholder="Nome da rua" style="flex:2;">
+            <input type="text" id="numero" placeholder="Nº" style="flex:1;">
+        </div>
 
         <select id="bairro" onchange="calcularTotal()">
             <option value="">Selecione o bairro</option>
-            <option value="1">Rio Vermelho — R$ 1</option>
-            <option value="1">Ingleses — R$ 1</option>
+            <option value="6">Rio Vermelho — R$ 6</option>
+            <option value="6">Ingleses — R$ 6</option>
         </select>
 
         <select id="pagamento">
-            <option value="">Forma de pagamento</option>
             <option value="Pix">📲 Pix</option>
-            <option value="Cartão">💳 Cartão na entrega</option>
-            <option value="Dinheiro">💵 Dinheiro na entrega</option>
         </select>
 
-        <textarea id="observacao" rows="3" placeholder="Observações: tirar cebola, carne bem passada, troco para 100..." style="width:100%; padding:14px; border-radius:12px; border:1px solid #e6e6e6; margin-bottom:14px; font-size:14px; resize:none;"></textarea>
+        <textarea id="observacao" rows="3" placeholder="Observações: tirar cebola, carne bem passada..." style="width:100%; padding:14px; border-radius:12px; border:1px solid #e6e6e6; margin-bottom:14px; font-size:14px; resize:none;"></textarea>
 
         <div style="background:#f5fff7; border:1px solid #cceedd; padding:12px; border-radius:12px; margin-bottom:12px; font-size:14px; text-align:center;">
-            🔒 <strong>Você paga somente na entrega.</strong><br>
-            Pix, cartão ou dinheiro — sem cobrança antecipada.
+            📲 <strong>Pagamento via Pix.</strong><br>
+            A chave será enviada pelo WhatsApp após a confirmação do pedido.
         </div>
 
         <h2>Total: R$ <span id="total">0,00</span></h2>
