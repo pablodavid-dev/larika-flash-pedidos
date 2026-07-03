@@ -1,27 +1,29 @@
 /* =====================================
-   LARIKA FLASH — IFOOD STYLE UI
-   CLEAN • PREMIUM • FAMILIAR
-   ===================================== */
+   LARIKA FLASH — MODERNO PREMIUM
+   PROFISSIONAL • LIMPO • COPA SUTIL
+===================================== */
 
 :root {
-    --bg-main: #d3d3d3;
-    --bg-surface: #ffffff;
+    --bg-main: #111111;
+    --bg-second: #1a1a1a;
+    --card: #ffffff;
 
-    --text-primary: #1c1c1c;
-    --text-secondary: #555555;
-    --text-muted: #777777;
+    --text-primary: #171717;
+    --text-secondary: #444444;
+    --text-muted: #666666;
 
-    --accent-red: #ea1d2c;        /* iFood red */
-    --accent-red-soft: #fdebec;
+    --green: #009c3b;
+    --green-dark: #007a2f;
+    --yellow: #ffdf00;
+    --whatsapp: #25d366;
 
-    --border-light: #e6e6e6;
+    --border: #eeeeee;
 
-    --radius-xl: 18px;
-    --radius-lg: 14px;
-    --radius-md: 12px;
+    --radius-xl: 22px;
+    --radius-md: 14px;
 
-    --shadow-soft: 0 6px 18px rgba(0,0,0,0.08);
-    --shadow-hover: 0 10px 26px rgba(0,0,0,0.12);
+    --shadow-card: 0 10px 28px rgba(0,0,0,0.18);
+    --shadow-card-hover: 0 16px 38px rgba(0,0,0,0.25);
 }
 
 /* RESET */
@@ -32,16 +34,19 @@
 /* BASE */
 body {
     margin: 0;
-    background: var(--bg-main);
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at top, rgba(0,156,59,0.22), transparent 28%),
+        linear-gradient(180deg, var(--bg-second), var(--bg-main));
     color: var(--text-primary);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, Arial, sans-serif;
 }
 
 /* CONTAINER */
 .container {
-    max-width: 680px;
-    margin: auto;
-    padding: 20px 16px 48px;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 24px 16px 54px;
 }
 
 /* LOGO */
@@ -50,249 +55,306 @@ body {
     justify-content: center;
     margin-bottom: 14px;
 }
+
 .logo img {
-    width: 120px;
-    height: 120px;
+    width: 118px;
+    height: 118px;
     object-fit: cover;
     border-radius: 50%;
-    border: 4px solid #ffffff;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+    border: 3px solid var(--yellow);
+    background: #000;
+    box-shadow: 0 10px 28px rgba(0,0,0,0.35);
 }
 
+/* STATUS DA LOJA */
+#status-loja {
+    display: block;
+    width: fit-content;
+    margin: 0 auto 22px;
+    padding: 9px 18px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 800;
+    text-align: center;
+}
 
-/* TITULOS */
+#status-loja.aberto {
+    background: rgba(37,211,102,0.14);
+    color: #7dffad;
+    border: 1px solid rgba(37,211,102,0.35);
+}
+
+#status-loja.fechado {
+    background: rgba(255,70,70,0.13);
+    color: #ff7676;
+    border: 1px solid rgba(255,70,70,0.32);
+}
+
+/* TÍTULOS */
 h1 {
     display: none;
 }
 
 h2 {
     text-align: center;
-    font-size: 18px;
-    font-weight: 500;
-    color: var(--text-secondary);
-    margin-bottom: 16px;
+    color: #ffffff;
+    font-size: 19px;
+    font-weight: 800;
+    margin: 24px 0 18px;
+    letter-spacing: -0.2px;
 }
 
-/* =====================================
-   COMBOS (CARDS)
-   ===================================== */
-
+/* CARDS */
 .combo {
-    background: var(--bg-surface);
+    position: relative;
+    background: var(--card);
     border-radius: var(--radius-xl);
     padding: 20px;
     margin-bottom: 16px;
-    border: 1px solid var(--border-light);
-    box-shadow: var(--shadow-soft);
-    transition: box-shadow 0.2s ease, transform 0.2s ease;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-card);
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+    overflow: visible;
 }
 
 .combo:hover {
     transform: translateY(-2px);
-    box-shadow: var(--shadow-hover);
+    box-shadow: var(--shadow-card-hover);
 }
 
-/* TITULO DO COMBO */
+.combo::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 22px;
+    bottom: 22px;
+    width: 5px;
+    border-radius: 0 999px 999px 0;
+    background: var(--green);
+}
+
 .combo h3 {
     margin: 0 0 8px;
     font-size: 18px;
-    font-weight: 600;
+    font-weight: 850;
     color: var(--text-primary);
+    letter-spacing: -0.2px;
 }
 
-/* DESCRIÇÃO */
 .combo p {
     margin: 0;
     font-size: 14px;
-    line-height: 1.6;
+    line-height: 1.55;
     color: var(--text-muted);
 }
 
-/* =====================================
-   CONTROLES
-   ===================================== */
+/* IMAGEM DOS COMBOS */
+.combo img {
+    position: absolute;
+    right: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 142px;
+    max-width: 35%;
+    border-radius: 16px;
+    object-fit: cover;
+    box-shadow: 0 8px 22px rgba(0,0,0,0.16);
+}
 
+.combo h3,
+.combo p,
+.combo .controls {
+    padding-right: 160px;
+}
+
+/* COMBO DESTACADO */
+.combo.destaque {
+    border: 2px solid var(--green);
+    background: linear-gradient(180deg, #ffffff 0%, #f8fff9 100%);
+}
+
+.combo.destaque::before {
+    background: var(--yellow);
+}
+
+.badge-top {
+    position: absolute;
+    top: -13px;
+    left: 20px;
+    background: var(--green);
+    color: #ffffff;
+    padding: 7px 14px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 0.5px;
+    box-shadow: 0 8px 18px rgba(0,0,0,0.22);
+}
+
+/* CONTROLES */
 .controls {
     display: flex;
     align-items: center;
     gap: 14px;
-    margin-top: 14px;
+    margin-top: 15px;
 }
 
-/* BOTÕES + / - */
 .controls button {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    background: var(--accent-red-soft);
+    width: 38px;
+    height: 38px;
+    border-radius: 999px;
     border: none;
-    color: var(--accent-red);
-    font-size: 20px;
-    font-weight: bold;
+    background: #eef8f1;
+    color: var(--green);
+    font-size: 22px;
+    font-weight: 900;
     cursor: pointer;
-    transition: background 0.15s ease;
+    transition: background 0.15s ease, transform 0.15s ease;
 }
 
 .controls button:hover {
-    background: #fbd2d6;
+    background: #dff3e6;
+    transform: scale(1.06);
 }
 
-/* QUANTIDADE */
 .controls span {
-    font-size: 16px;
-    font-weight: 600;
+    min-width: 16px;
+    text-align: center;
+    font-size: 17px;
+    font-weight: 800;
     color: var(--text-primary);
 }
 
-/* =====================================
-   RESUMO / FORM
-   ===================================== */
-
+/* RESUMO */
 .resumo {
     margin-top: 28px;
-    padding-top: 20px;
-    border-top: 1px solid var(--border-light);
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 24px;
+    box-shadow: var(--shadow-card);
+    border: 1px solid rgba(255,223,0,0.35);
 }
 
-/* INPUTS */
-input, select {
+.resumo h2 {
+    color: var(--text-primary);
+    margin-top: 0;
+    text-shadow: none;
+}
+
+/* CAMPOS */
+input,
+select,
+textarea {
     width: 100%;
-    padding: 14px;
+    padding: 15px;
     margin-bottom: 14px;
     border-radius: var(--radius-md);
-    border: 1px solid var(--border-light);
-    background: #fff;
+    border: 1px solid #e5e5e5;
+    background: #ffffff;
+    color: var(--text-primary);
     font-size: 15px;
-    color: var(--text-primary);
+    font-family: inherit;
+    transition: border 0.15s ease, box-shadow 0.15s ease;
 }
 
-input::placeholder {
-    color: var(--text-muted);
+input::placeholder,
+textarea::placeholder {
+    color: #8a8a8a;
 }
 
-input:focus, select:focus {
+input:focus,
+select:focus,
+textarea:focus {
     outline: none;
-    border-color: var(--accent-red);
+    border-color: var(--green);
+    box-shadow: 0 0 0 3px rgba(0,156,59,0.11);
 }
 
-/* =====================================
-   TOTAL
-   ===================================== */
+/* CAIXA PIX */
+.resumo div[style*="background"] {
+    background: #f5fff7 !important;
+    border: 1px solid #cceedd !important;
+    color: #1d5f33;
+}
 
+/* TOTAL */
 #total {
-    font-size: 24px;
-    font-weight: 700;
-    color: var(--text-primary);
+    font-size: 26px;
+    font-weight: 900;
+    color: var(--green);
 }
 
-/* =====================================
-   BOTÃO WHATSAPP
-   ===================================== */
-
-.btn-whatsapp {
-    width: 100%;
-    padding: 16px;
-    border-radius: 16px;
-    border: none;
-    font-size: 17px;
-    font-weight: 600;
-    cursor: pointer;
-    color: #fff;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-
-    background: var(--accent-red);
-    box-shadow: 0 10px 30px rgba(234,29,44,0.4);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.btn-whatsapp:hover {
-    transform: scale(1.02);
-    box-shadow: 0 14px 38px rgba(234,29,44,0.55);
-}
-
-/* =====================================
-   BOTÃO WHATSAPP PREMIUM
-   ===================================== */
-
+/* BOTÃO WHATSAPP */
 .btn-whatsapp {
     width: 100%;
     padding: 18px;
     border-radius: 999px;
     border: none;
-    font-size: 17px;
-    font-weight: 700;
-    cursor: pointer;
-    color: #fff;
+    background: linear-gradient(135deg, var(--whatsapp), var(--green));
+    color: #ffffff;
 
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 12px;
 
-    background: #25d366;
-    box-shadow: 0 10px 30px rgba(37,211,102,0.4);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    font-size: 17px;
+    font-weight: 900;
+    cursor: pointer;
+
+    box-shadow: 0 12px 32px rgba(37,211,102,0.40);
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
 }
 
 .btn-whatsapp:hover {
-    transform: scale(1.04);
-    box-shadow: 0 14px 40px rgba(37,211,102,0.6);
+    transform: scale(1.025);
+    box-shadow: 0 16px 40px rgba(37,211,102,0.55);
 }
 
-/* Bolinha verde */
+/* BOLINHA DO BOTÃO */
 .wh-circle {
     width: 14px;
     height: 14px;
-    background: #00ff6a;
+    background: #ffffff;
     border-radius: 50%;
-    box-shadow: 0 0 0 rgba(0,255,106, 0.7);
     animation: pulse 1.8s infinite;
 }
 
-/* Animação pulsar */
 @keyframes pulse {
     0% {
-        box-shadow: 0 0 0 0 rgba(0,255,106, 0.7);
+        box-shadow: 0 0 0 0 rgba(255,255,255,0.7);
     }
+
     70% {
-        box-shadow: 0 0 0 12px rgba(0,255,106, 0);
+        box-shadow: 0 0 0 12px rgba(255,255,255,0);
     }
+
     100% {
-        box-shadow: 0 0 0 0 rgba(0,255,106, 0);
+        box-shadow: 0 0 0 0 rgba(255,255,255,0);
     }
 }
 
-
-.combo.destaque {
-    border: 2px solid #8f000a;
-}
-.combo {
-    position: relative;
-}
-
-/* IMAGEM DO COMBO */
-.combo img {
-    position: absolute;
-    right: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 140px;
-    max-width: 35%;
-    border-radius: 12px;
-    object-fit: cover;
-}
-
-/* TEXTO NÃO INVADIR A IMAGEM */
-.combo h3,
-.combo p,
-.combo .controls {
-    padding-right: 160px;
-}
+/* MOBILE */
 @media (max-width: 600px) {
+
+    .container {
+        padding: 20px 12px 46px;
+    }
+
+    .logo img {
+        width: 108px;
+        height: 108px;
+    }
+
+    h2 {
+        font-size: 18px;
+    }
+
+    .combo {
+        padding: 18px;
+        margin-bottom: 15px;
+    }
+
     .combo img {
         position: static;
         transform: none;
@@ -306,63 +368,18 @@ input:focus, select:focus {
     .combo .controls {
         padding-right: 0;
     }
-}/* =========================================
-   STATUS DA LOJA
-========================================= */
 
-#status-loja {
-    display: block;
-    width: fit-content;
-    margin: 0 auto 20px;
-    padding: 8px 18px;
+    .combo h3 {
+        font-size: 18px;
+    }
 
-    text-align: center;
-    font-size: 13px;
-    font-weight: 600;
+    .resumo {
+        padding: 18px;
+    }
 
-    border-radius: 999px;
+    input,
+    select,
+    textarea {
+        font-size: 14px;
+    }
 }
-
-/* Estado: Aberto */
-#status-loja.aberto {
-    background: rgba(37, 211, 102, 0.12);
-    color: #1a7f37;
-    border: 1px solid rgba(37, 211, 102, 0.4);
-}
-
-/* Estado: Fechado */
-#status-loja.fechado {
-    background: rgba(234, 29, 44, 0.08);
-    color: #ea1d2c;
-    border: 1px solid rgba(234, 29, 44, 0.3);
-}
-
-/* =====================================
-   BADGE PREMIUM MAIS PEDIDO
-===================================== */
-
-.combo.destaque {
-    border: 2px solid #111;
-    position: relative;
-}
-
-.badge-top {
-    position: absolute;
-    top: -12px;
-    left: 20px;
-
-    background: #111;
-    color: #fff;
-
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.8px;
-
-    padding: 6px 14px;
-    border-radius: 999px;
-
-    box-shadow: 0 6px 18px rgba(0,0,0,0.25);
-}
-
-
-
