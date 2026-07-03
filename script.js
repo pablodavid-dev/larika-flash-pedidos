@@ -37,7 +37,6 @@ var nomesCombos = [
    HORÁRIO DE FUNCIONAMENTO
    TERÇA A SEXTA
    20:00 ÀS 00:00
-   HORÁRIO DE BRASÍLIA
 ============================ */
 
 function lojaEstaAbertaAgora() {
@@ -150,8 +149,8 @@ function enviarPedido() {
     }
 
     const rua = document.getElementById("rua");
+    const numero = document.getElementById("numero");
     const bairro = document.getElementById("bairro");
-    const pagamento = document.getElementById("pagamento");
     const observacao = document.getElementById("observacao");
 
     let mensagem = "🍔 PEDIDO - LARIKA FLASH\n\n";
@@ -183,13 +182,18 @@ function enviarPedido() {
         return;
     }
 
-    if (subtotal < 30) {
-        alert("Pedido mínimo de R$ 30,00.");
+    if (subtotal < 59) {
+        alert("Pedido mínimo de R$ 59,00.");
         return;
     }
 
     if (rua.value.trim() === "") {
-        alert("Digite o endereço.");
+        alert("Digite o nome da rua.");
+        return;
+    }
+
+    if (!numero || numero.value.trim() === "") {
+        alert("Digite o número da casa.");
         return;
     }
 
@@ -198,16 +202,16 @@ function enviarPedido() {
         return;
     }
 
-    if (pagamento.value === "") {
-        alert("Selecione a forma de pagamento.");
-        return;
-    }
-
     mensagem += "\n📍 INFORMAÇÕES\n";
 
     mensagem +=
-        "Endereço: " +
+        "Rua: " +
         rua.value +
+        "\n";
+
+    mensagem +=
+        "Número: " +
+        numero.value +
         "\n";
 
     mensagem +=
@@ -216,9 +220,7 @@ function enviarPedido() {
         "\n";
 
     mensagem +=
-        "Pagamento: " +
-        pagamento.value +
-        "\n";
+        "Pagamento: Pix\n";
 
     if (observacao.value.trim() !== "") {
 
