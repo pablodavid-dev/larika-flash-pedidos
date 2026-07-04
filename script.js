@@ -4,29 +4,39 @@
 
 let lojaAberta = false;
 
-var quantidades = [0, 0, 0, 0, 0];
+var quantidades = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
 var precos = [
-    89.90,
-    57.90,
-    27.90,
-    18.00,
-    18.00
+    139,
+    99,
+    75,
+    59,
+    39,
+    69,
+    37,
+    18,
+    18,
+    14
 ];
 
 var nomesCombos = [
-    "Família KURXIS",
-    "Duplo KURXIS",
-    "Solo KURXIS",
+    "Super Combo Larikão",
+    "Mega Combo",
+    "Combo Família",
+    "Combo Casal",
+    "Combo Solteiro",
+    "Combo 2 Xis Salada Aro 17",
+    "600g Fritas com Cheddar e Bacon",
     "Pepsi 2L",
-    "Coca-Cola 1,5L"
+    "Coca-Cola 1,5L",
+    "Caixa de Bis"
 ];
 
 
 /* ============================
    HORÁRIO DE FUNCIONAMENTO
-   TODOS OS DIAS
-   19:00 ÀS 02:00
+   TERÇA A SEXTA
+   20:00 ÀS 00:00
 ============================ */
 
 function lojaEstaAbertaAgora() {
@@ -36,9 +46,13 @@ function lojaEstaAbertaAgora() {
         })
     );
 
+    const dia = agoraBrasilia.getDay();
     const hora = agoraBrasilia.getHours();
 
-    return hora >= 19 || hora < 2;
+    const ehTercaASexta = dia >= 2 && dia <= 5;
+    const dentroDoHorario = hora >= 20 && hora < 24;
+
+    return ehTercaASexta && dentroDoHorario;
 }
 
 
@@ -90,7 +104,7 @@ function calcularTotal() {
     const total = subtotal + taxaEntrega;
 
     document.getElementById("total").innerText =
-        total.toFixed(2).replace(".", ",");
+        total.toFixed(2);
 }
 
 
@@ -111,7 +125,7 @@ function atualizarStatusLoja() {
     } else {
         status.className = "status fechado";
         status.innerText =
-            "🔴 Loja fechada • abre todos os dias das 19h às 02h";
+            "🔴 Loja fechada • abre terça a sexta das 20h às 00h";
     }
 }
 
@@ -130,7 +144,7 @@ function enviarPedido() {
     atualizarStatusLoja();
 
     if (!lojaAberta) {
-        alert("A loja está fechada no momento. Funcionamos das 19h às 02h.");
+        alert("A loja está fechada no momento. Funcionamos de terça a sexta, das 20h às 00h.");
         return;
     }
 
@@ -139,7 +153,7 @@ function enviarPedido() {
     const bairro = document.getElementById("bairro");
     const observacao = document.getElementById("observacao");
 
-    let mensagem = "🍔 PEDIDO - KURXIS\n\n";
+    let mensagem = "🍔 PEDIDO - LARIKA FLASH\n\n";
 
     let subtotal = 0;
     let temPedido = false;
@@ -153,7 +167,7 @@ function enviarPedido() {
                 "x " +
                 nomesCombos[i] +
                 " - R$ " +
-                (quantidades[i] * precos[i]).toFixed(2).replace(".", ",") +
+                (quantidades[i] * precos[i]).toFixed(2) +
                 "\n";
 
             subtotal +=
@@ -168,8 +182,8 @@ function enviarPedido() {
         return;
     }
 
-    if (subtotal < 25) {
-        alert("Pedido mínimo de R$ 25,00.");
+    if (subtotal < 59) {
+        alert("Pedido mínimo de R$ 59,00.");
         return;
     }
 
@@ -225,7 +239,7 @@ function enviarPedido() {
         totalFinal;
 
     window.open(
-        "https://wa.me/5548984401356?text=" +
+        "https://wa.me/5548988509014?text=" +
         encodeURIComponent(mensagem),
         "_blank"
     );
