@@ -4,9 +4,9 @@
 
 let lojaAberta = false;
 
-var quantidades = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+const quantidades = [0,0,0,0,0,0,0,0,0,0];
 
-var precos = [
+const precos = [
     139,
     99,
     74,
@@ -19,7 +19,7 @@ var precos = [
     14
 ];
 
-var nomesCombos = [
+const nomesCombos = [
     "Super Combo Larikão",
     "Mega Combo",
     "Combo Família",
@@ -32,219 +32,176 @@ var nomesCombos = [
     "Caixa de Bis"
 ];
 
-
 /* ============================
    HORÁRIO DE FUNCIONAMENTO
    TERÇA A SEXTA
-   20:00 ÀS 00:00
+   20:00 ÀS 01:00
 ============================ */
 
-function lojaEstaAbertaAgora() {
-    const agoraBrasilia = new Date(
-        new Date().toLocaleString("en-US", {
-            timeZone: "America/Sao_Paulo"
+function lojaEstaAbertaAgora(){
+
+    const agora = new Date(
+        new Date().toLocaleString("en-US",{
+            timeZone:"America/Sao_Paulo"
         })
     );
 
-    const dia = agoraBrasilia.getDay();
-    const hora = agoraBrasilia.getHours();
+    let dia = agora.getDay();
+    const hora = agora.getHours();
+
+    // Entre 00:00 e 00:59 ainda conta como o dia anterior
+    if(hora < 1){
+        dia--;
+        if(dia < 0) dia = 6;
+    }
 
     const ehTercaASexta = dia >= 2 && dia <= 5;
-    const dentroDoHorario = hora >= 20 && hora < 24;
 
-    return ehTercaASexta && dentroDoHorario;
+    if(!ehTercaASexta) return false;
+
+    return hora >= 20 || hora < 1;
 }
 
-
 /* ============================
-   CONTROLE DE QUANTIDADE
+   QUANTIDADE
 ============================ */
 
-function adicionar(index) {
-    quantidades[index]++;
-
-    document.getElementById("qtd-" + index).innerText =
-        quantidades[index];
-
+function adicionar(i){
+    quantidades[i]++;
+    document.getElementById("qtd-"+i).innerText=quantidades[i];
     calcularTotal();
 }
 
-function remover(index) {
-    if (quantidades[index] > 0) {
-        quantidades[index]--;
-
-        document.getElementById("qtd-" + index).innerText =
-            quantidades[index];
-
+function remover(i){
+    if(quantidades[i]>0){
+        quantidades[i]--;
+        document.getElementById("qtd-"+i).innerText=quantidades[i];
         calcularTotal();
     }
 }
 
-
 /* ============================
-   CÁLCULO TOTAL
+   TOTAL
 ============================ */
 
-function calcularTotal() {
+function calcularTotal(){
 
-    let subtotal = 0;
+    let subtotal=0;
 
-    for (let i = 0; i < quantidades.length; i++) {
-        subtotal += quantidades[i] * precos[i];
-    }
+    quantidades.forEach((qtd,i)=>{
+        subtotal+=qtd*precos[i];
+    });
 
-    let taxaEntrega = 0;
+    const bairro=document.getElementById("bairro");
 
-    const bairro = document.getElementById("bairro");
+    const entrega=bairro.value===""?0:parseFloat(bairro.value);
 
-    if (bairro && bairro.value !== "") {
-        taxaEntrega = parseFloat(bairro.value);
-    }
-
-    const total = subtotal + taxaEntrega;
-
-    document.getElementById("total").innerText =
-        total.toFixed(2);
+    document.getElementById("total").innerText=(subtotal+entrega).toFixed(2);
 }
 
-
 /* ============================
-   STATUS DA LOJA
+   STATUS
 ============================ */
 
-function atualizarStatusLoja() {
+function atualizarStatusLoja(){
 
-    lojaAberta = lojaEstaAbertaAgora();
+    lojaAberta=lojaEstaAbertaAgora();
 
-    const status = document.getElementById("status-loja");
+    const status=document.getElementById("status-loja");
 
-    if (lojaAberta) {
-        status.className = "status aberto";
-        status.innerText =
-            "🟢 Aberto agora - pedidos liberados";
-    } else {
-        status.className = "status fechado";
-        status.innerText =
-            "🔴 Loja fechada • abre terça a sexta das 20h às 00h";
+    if(lojaAberta){
+        status.className="status aberto";
+        status.innerText="🟢 Aberto agora - pedidos liberados";
+    }else{
+        status.className="status fechado";
+        status.innerText="🔴 Loja fechada • abre terça a sexta das 20h às 01h";
     }
 }
 
-function toggleLoja() {
-    lojaAberta = !lojaAberta;
+function toggleLoja(){
+    lojaAberta=!lojaAberta;
     atualizarStatusLoja();
 }
 
-
 /* ============================
-   ENVIAR PEDIDO
+   PEDIDO
 ============================ */
 
-function enviarPedido() {
+function enviarPedido(){
 
     atualizarStatusLoja();
 
-    if (!lojaAberta) {
-        alert("A loja está fechada no momento. Funcionamos de terça a sexta, das 20h às 00h.");
+    if(!lojaAberta){
+        alert("A loja está fechada. Funcionamos de terça a sexta das 20h às 01h.");
         return;
     }
 
-    const rua = document.getElementById("rua");
-    const numero = document.getElementById("numero");
-    const bairro = document.getElementById("bairro");
-    const observacao = document.getElementById("observacao");
+    const rua=document.getElementById("rua");
+    const numero=document.getElementById("numero");
+    const bairro=document.getElementById("bairro");
+    const observacao=document.getElementById("observacao");
 
-    let mensagem = "🍔 PEDIDO - LARIKA FLASH\n\n";
+    let subtotal=0;
+    let mensagem="🍔 PEDIDO - LARIKA FLASH\n\n";
+    let possuiItens=false;
 
-    let subtotal = 0;
-    let temPedido = false;
+    quantidades.forEach((qtd,i)=>{
 
-    for (let i = 0; i < quantidades.length; i++) {
+        if(qtd>0){
 
-        if (quantidades[i] > 0) {
+            possuiItens=true;
 
-            mensagem +=
-                quantidades[i] +
-                "x " +
-                nomesCombos[i] +
-                " - R$ " +
-                (quantidades[i] * precos[i]).toFixed(2) +
-                "\n";
+            subtotal+=qtd*precos[i];
 
-            subtotal +=
-                quantidades[i] * precos[i];
-
-            temPedido = true;
+            mensagem+=`${qtd}x ${nomesCombos[i]} - R$ ${(qtd*precos[i]).toFixed(2)}\n`;
         }
-    }
 
-    if (!temPedido) {
-        alert("Adicione pelo menos um item ao pedido.");
+    });
+
+    if(!possuiItens){
+        alert("Adicione pelo menos um item.");
         return;
     }
 
-    if (subtotal < 59) {
+    if(subtotal<59){
         alert("Pedido mínimo de R$ 59,00.");
         return;
     }
 
-    if (rua.value.trim() === "") {
-        alert("Digite o nome da rua.");
+    if(rua.value.trim()===""){
+        alert("Digite a rua.");
         return;
     }
 
-    if (!numero || numero.value.trim() === "") {
-        alert("Digite o número da casa.");
+    if(numero.value.trim()===""){
+        alert("Digite o número.");
         return;
     }
 
-    if (bairro.value === "") {
+    if(bairro.value===""){
         alert("Selecione o bairro.");
         return;
     }
 
-    mensagem += "\n📍 INFORMAÇÕES\n";
+    mensagem+="\n📍 INFORMAÇÕES\n";
+    mensagem+="Rua: "+rua.value+"\n";
+    mensagem+="Número: "+numero.value+"\n";
+    mensagem+="Bairro: "+bairro.options[bairro.selectedIndex].text+"\n";
+    mensagem+="Pagamento: Pix\n";
 
-    mensagem +=
-        "Rua: " +
-        rua.value +
-        "\n";
-
-    mensagem +=
-        "Número: " +
-        numero.value +
-        "\n";
-
-    mensagem +=
-        "Bairro: " +
-        bairro.options[bairro.selectedIndex].text +
-        "\n";
-
-    mensagem +=
-        "Pagamento: Pix\n";
-
-    if (observacao.value.trim() !== "") {
-
-        mensagem += "\n📝 OBSERVAÇÃO\n";
-
-        mensagem +=
-            observacao.value +
-            "\n";
+    if(observacao.value.trim()!==""){
+        mensagem+="\n📝 OBSERVAÇÃO\n";
+        mensagem+=observacao.value+"\n";
     }
 
-    const totalFinal =
-        document.getElementById("total").innerText;
-
-    mensagem +=
-        "\n💰 TOTAL: R$ " +
-        totalFinal;
+    mensagem+="\n💰 TOTAL: R$ ";
+    mensagem+=document.getElementById("total").innerText;
 
     window.open(
-        "https://wa.me/5548988509014?text=" +
-        encodeURIComponent(mensagem),
+        "https://wa.me/5548988509014?text="+encodeURIComponent(mensagem),
         "_blank"
     );
 }
-
 
 /* ============================
    INICIALIZAÇÃO
@@ -253,4 +210,4 @@ function enviarPedido() {
 atualizarStatusLoja();
 calcularTotal();
 
-setInterval(atualizarStatusLoja, 60000);
+setInterval(atualizarStatusLoja,60000);
