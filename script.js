@@ -35,7 +35,7 @@ const nomesCombos = [
 /* ============================
    HORÁRIO DE FUNCIONAMENTO
    TERÇA A SEXTA
-   20:00 ÀS 01:00
+   19:00 ÀS 01:00
 ============================ */
 
 function lojaEstaAbertaAgora(){
@@ -49,7 +49,6 @@ function lojaEstaAbertaAgora(){
     let dia = agora.getDay();
     const hora = agora.getHours();
 
-    // Entre 00:00 e 00:59 ainda conta como o dia anterior
     if(hora < 1){
         dia--;
         if(dia < 0) dia = 6;
@@ -59,7 +58,7 @@ function lojaEstaAbertaAgora(){
 
     if(!ehTercaASexta) return false;
 
-    return hora >= 20 || hora < 1;
+    return hora >= 19 || hora < 1;
 }
 
 /* ============================
@@ -114,7 +113,7 @@ function atualizarStatusLoja(){
         status.innerText="🟢 Aberto agora - pedidos liberados";
     }else{
         status.className="status fechado";
-        status.innerText="🔴 Loja fechada • abre terça a sexta das 20h às 01h";
+        status.innerText="🔴 Loja fechada • abre terça a sexta das 19h às 01h";
     }
 }
 
@@ -132,7 +131,7 @@ function enviarPedido(){
     atualizarStatusLoja();
 
     if(!lojaAberta){
-        alert("A loja está fechada. Funcionamos de terça a sexta das 20h às 01h.");
+        alert("A loja está fechada. Funcionamos de terça a sexta das 19h às 01h.");
         return;
     }
 
