@@ -138,6 +138,7 @@ function enviarPedido(){
     const rua=document.getElementById("rua");
     const numero=document.getElementById("numero");
     const bairro=document.getElementById("bairro");
+    const pagamento=document.getElementById("pagamento");
     const observacao=document.getElementById("observacao");
 
     let subtotal=0;
@@ -182,11 +183,16 @@ function enviarPedido(){
         return;
     }
 
+    if(pagamento.value===""){
+        alert("Selecione a forma de pagamento.");
+        return;
+    }
+
     mensagem+="\n📍 INFORMAÇÕES\n";
     mensagem+="Rua: "+rua.value+"\n";
     mensagem+="Número: "+numero.value+"\n";
     mensagem+="Bairro: "+bairro.options[bairro.selectedIndex].text+"\n";
-    mensagem+="Pagamento: Pix\n";
+    mensagem+="Pagamento: "+pagamento.value+"\n";
 
     if(observacao.value.trim()!==""){
         mensagem+="\n📝 OBSERVAÇÃO\n";
